@@ -4,7 +4,7 @@
 
     border-radius: 22px;
 
-    padding: 1.4rem;
+    padding: 1.5rem;
 
     box-shadow: var(--shadow-card);
 
@@ -24,29 +24,61 @@
     transform: translateY(-4px);
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .top {
 
     display: flex;
 
     justify-content: space-between;
 
-    align-items: center;
+    align-items: flex-start;
+
+    gap: 1rem;
+}
+
+.titulo-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: .25rem;
 }
 
 .top h3 {
 
     font-size: 1.1rem;
+
+    margin: 0;
+
+    font-weight: 700;
 }
+
+.top small {
+
+    color: var(--color-text-secondary);
+
+    font-size: .85rem;
+}
+
+/* =========================
+   ESTADOS
+========================= */
 
 .estado {
 
-    padding: .45rem .8rem;
+    padding: .45rem .85rem;
 
     border-radius: 999px;
 
-    font-size: .8rem;
+    font-size: .78rem;
 
     font-weight: 700;
+
+    white-space: nowrap;
 }
 
 .pendiente {
@@ -63,49 +95,147 @@
     color: #15803d;
 }
 
+.no-realizado-text {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+}
+
+/* =========================
+   DESCRIPCION
+========================= */
+
 .descripcion {
 
     color: var(--color-text-secondary);
 
     line-height: 1.5;
+
+    margin: 0;
 }
+
+/* =========================
+   SECCIONES
+========================= */
+
+.seccion {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: .7rem;
+}
+
+.seccion-titulo {
+
+    font-size: .9rem;
+
+    font-weight: 700;
+
+    color: #64748b;
+
+    margin: 0;
+}
+
+/* =========================
+   INFORMACION
+========================= */
 
 .info {
 
     display: flex;
 
-    justify-content: space-between;
+    flex-direction: column;
 
-    font-size: .9rem;
+    gap: .6rem;
 }
 
-.empleados {
+.info p {
+
+    margin: 0;
+
+    font-size: .92rem;
+
+    color: #334155;
+
+    line-height: 1.4;
+}
+
+/* =========================
+   PRIORIDAD
+========================= */
+
+.prioridad {
+
+    width: fit-content;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    font-size: .8rem;
+
+    font-weight: 700;
+
+    color: white;
+}
+
+.prioridad.alta {
+
+    background-color: #dc2626;
+}
+
+.prioridad.media {
+
+    background-color: #f59e0b;
+}
+
+.prioridad.baja {
+
+    background-color: #16a34a;
+}
+
+/* =========================
+   EMPLEADOS
+========================= */
+
+.empleados-lista {
 
     display: flex;
 
-    gap: .6rem;
-
     flex-wrap: wrap;
+
+    gap: .6rem;
 }
 
-.empleados span {
+.empleado-chip {
 
     background: var(--color-primary-soft);
 
     color: var(--color-primary);
 
-    padding: .4rem .8rem;
+    padding: .45rem .85rem;
 
     border-radius: 999px;
 
     font-size: .8rem;
+
+    font-weight: 600;
 }
+
+/* =========================
+   ACCIONES
+========================= */
 
 .acciones {
 
     display: flex;
 
     gap: 1rem;
+
+    margin-top: .5rem;
 }
 
 .btn-primary {
@@ -118,13 +248,20 @@
 
     color: white;
 
-    padding: .8rem;
+    padding: .85rem;
 
     border-radius: 999px;
 
     cursor: pointer;
 
     font-weight: 600;
+
+    transition: .2s;
+}
+
+.btn-primary:hover {
+
+    opacity: .92;
 }
 
 .btn-secondary {
@@ -137,11 +274,34 @@
 
     color: #3730a3;
 
-    padding: .8rem;
+    padding: .85rem;
 
     border-radius: 999px;
 
     cursor: pointer;
 
     font-weight: 600;
+
+    transition: .2s;
+}
+
+.btn-secondary:hover {
+
+    background: #dbe4ff;
+}
+
+/* =========================
+   CARD NO REALIZADA
+========================= */
+
+.tarea-card.no-realizado {
+
+    border-left: 6px solid #dc2626;
+
+    background-color: #fff5f5;
+}
+
+.tarea-card.no-realizado .top h3 {
+
+    color: #b91c1c;
 }

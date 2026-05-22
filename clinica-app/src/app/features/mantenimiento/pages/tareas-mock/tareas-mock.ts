@@ -20,6 +20,27 @@ export const TAREAS_MOCK: Tarea[] = [
         descripcion: 'La luz del pasillo principal no funciona.',
         estado: 'FINALIZADO',
         sector: 'Pasillo',
+        prioridad: 'ALTA',
+        fechaCreacion: '2026-05-18',
+        fechaLimite: '2026-05-22',
+        empleados: ['Carlos']
+    },
+        {
+        id: 3,
+        titulo: 'Cambiar azulejos',
+        descripcion: 'La luz del pasillo principal no funciona.',
+        estado: 'NO_REALIZADO',
+        sector: 'Pasillo',
+        prioridad: 'MEDIA',
+        fechaCreacion: '2026-05-18',
+        fechaLimite: '2026-05-22',
+        empleados: ['Carlos']
+    },    {
+        id: 4,
+        titulo: 'Cambiar Lampara',
+        descripcion: 'La luz del pasillo principal no funciona.',
+        estado: 'FINALIZADO',
+        sector: 'Pasillo',
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-tarea',
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './modal-tarea.css',
 })
 export class ModalTarea {
+
   @Input() visible = false;
 
   @Input() modo: 'crear' | 'editar' = 'crear';
@@ -18,7 +19,7 @@ export class ModalTarea {
 
     titulo: '',
 
-    descripcion: '',
+  descripcion: '',  
 
     sector: '',
 
@@ -69,4 +70,5 @@ export class ModalTarea {
       this.tarea.empleados.push(empleado);
     }
   }
+
 }

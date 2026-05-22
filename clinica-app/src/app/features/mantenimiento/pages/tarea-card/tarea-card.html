@@ -1,47 +1,132 @@
-<div class="tarea-card">
+<div
+    class="tarea-card"
+    [class.no-realizado]="tarea.estado === 'NO_REALIZADO'"
+>
 
+    <!-- HEADER -->
     <div class="top">
 
-        <h3>{{ tarea.titulo }}</h3>
+        <div class="titulo-container">
 
-        <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
-            [class.finalizado]="tarea.estado === 'FINALIZADO'">
+            <h3>
+                {{ tarea.tipoRequiriemiento }}
+            </h3>
+
+            <small>
+                {{ tarea.subarea }}
+            </small>
+
+        </div>
+
+        <span
+            class="estado"
+            [class.pendiente]="tarea.estado === 'PENDIENTE'"
+            [class.finalizado]="tarea.estado === 'FINALIZADO'"
+            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'"
+        >
             {{ tarea.estado }}
         </span>
 
     </div>
 
-    <p class="descripcion">
-        {{ tarea.descripcion }}
-    </p>
+    <!-- DESCRIPCION -->
+    <div class="seccion">
 
-    <div class="info">
+        <p class="seccion-titulo">
+            Descripción
+        </p>
 
-        <span>
-            📍 {{ tarea.sector }}
-        </span>
+        <p class="descripcion">
+            {{ tarea.descripcion }}
+        </p>
 
-        <span>
-            📅 {{ tarea.fechaLimite }}
+    </div>
+
+    <!-- INFORMACION -->
+    <div class="seccion">
+
+        <p class="seccion-titulo">
+            Información general
+        </p>
+
+        <div class="info">
+
+            <p>
+                🏪 <strong>Local:</strong>
+                {{ tarea.localSolicitante }}
+            </p>
+
+            <p>
+                📍 <strong>Subárea:</strong>
+                {{ tarea.subarea }}
+            </p>
+
+            <p>
+                📅 <strong>Fecha creación:</strong>
+                {{ tarea.fechaCreacion }}
+            </p>
+
+            <p>
+                🛠️ <strong>Fecha estimada:</strong>
+                {{ tarea.fechaLimite }}
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- PRIORIDAD -->
+    <div class="seccion">
+
+        <p class="seccion-titulo">
+            Prioridad
+        </p>
+
+        <span
+            class="prioridad"
+            [class.alta]="tarea.prioridad === 'ALTA'"
+            [class.media]="tarea.prioridad === 'MEDIA'"
+            [class.baja]="tarea.prioridad === 'BAJA'"
+        >
+            {{ tarea.prioridad }}
         </span>
 
     </div>
 
-    <div class="empleados">
+    <!-- EMPLEADOS -->
+    <div class="seccion">
 
-        <span *ngFor="let empleado of tarea.empleados">
-            {{ empleado }}
-        </span>
+        <p class="seccion-titulo">
+            Empleados asignados
+        </p>
+
+        <div class="empleados-lista">
+
+            <span
+                class="empleado-chip"
+                *ngFor="let empleado of tarea.empleados"
+            >
+                {{ empleado }}
+            </span>
+
+        </div>
 
     </div>
 
+    <!-- ACCIONES -->
     <div class="acciones">
 
-        <button class="btn-primary" (click)="verDetalle.emit()">
+        <button
+            class="btn-primary"
+            (click)="verDetalle.emit()"
+        >
             Ver detalle
         </button>
 
-        <button class="btn-secondary" (click)="editar.emit()">
+        <button
+            class="btn-secondary"
+            (click)="editar.emit()"
+        >
             Editar
         </button>
 

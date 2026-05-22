@@ -16,31 +16,50 @@
 
         <div class="contenido">
 
-            <label>Título</label>
-
-            <input
-                type="text"
-                [(ngModel)]="tarea.titulo"
-            >
-
-            <label>Descripción</label>
-
-            <textarea
-                rows="5"
-                [(ngModel)]="tarea.descripcion"
-            ></textarea>
-
-            <label>Sector</label>
+                <label>Local solicitante</label>
 
             <select [(ngModel)]="tarea.sector">
 
-                <option>Consultorios</option>
+                <option>831</option>
 
-                <option>Guardia</option>
+                <option>856</option>
 
-                <option>Pasillos</option>
+                <option>817</option>
 
             </select>
+
+                <label>Subárea</label>
+
+            <select [(ngModel)]="tarea.sector">
+
+                <option>cons1</option>
+
+                <option>cons2</option>
+
+                <option>con3</option>
+
+            </select>
+                <label>Tipo de requerimiento</label>
+                        <select [(ngModel)]="tarea.tipoRequiriemiento">
+
+                <option>Pintureria</option>
+
+                <option>Aire acondicionado</option>
+
+                <option>Electricidad</option>
+
+            </select>
+
+
+            <label>Descripción</label>
+
+    <textarea
+  [(ngModel)]="tarea.descripcion"
+  maxlength="200">
+</textarea>
+
+<p>{{ tarea.descripcion.length || 0 }}/200</p>
+
 
             <label>Prioridad</label>
 
@@ -79,7 +98,7 @@
 
             </div>
 
-            <label>Fecha límite</label>
+            <label>Fecha estimada a finalizar</label>
 
             <input
                 type="date"
