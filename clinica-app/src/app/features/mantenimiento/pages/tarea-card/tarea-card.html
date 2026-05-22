@@ -1,132 +1,76 @@
-<div
-    class="tarea-card"
-    [class.no-realizado]="tarea.estado === 'NO_REALIZADO'"
->
+<div class="tarea-card" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
 
     <!-- HEADER -->
     <div class="top">
 
+
         <div class="titulo-container">
 
             <h3>
-                {{ tarea.tipoRequiriemiento }}
+                Aire acondicionado {{ tarea.tipoRequiriemiento }}
             </h3>
 
-            <small>
-                {{ tarea.subarea }}
-            </small>
-
         </div>
-
-        <span
-            class="estado"
-            [class.pendiente]="tarea.estado === 'PENDIENTE'"
+        <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
             [class.finalizado]="tarea.estado === 'FINALIZADO'"
-            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'"
-        >
+            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
             {{ tarea.estado }}
         </span>
 
     </div>
 
     <!-- DESCRIPCION -->
-    <div class="seccion">
+    <p class="descripcion">
+        {{ tarea.descripcion }}
+    </p>
 
-        <p class="seccion-titulo">
-            Descripción
-        </p>
+    <!-- INFO RAPIDA -->
+    <div class="info-grid">
 
-        <p class="descripcion">
-            {{ tarea.descripcion }}
-        </p>
+        <div class="info-item">
+            <span class="label">Local</span>
+            <span>831{{ tarea.localSolicitante }}</span>
+        </div>
 
-    </div>
+        <div class="info-item">
+            <span class="label">Prioridad</span>
 
-    <!-- INFORMACION -->
-    <div class="seccion">
-
-        <p class="seccion-titulo">
-            Información general
-        </p>
-
-        <div class="info">
-
-            <p>
-                🏪 <strong>Local:</strong>
-                {{ tarea.localSolicitante }}
-            </p>
-
-            <p>
-                📍 <strong>Subárea:</strong>
-                {{ tarea.subarea }}
-            </p>
-
-            <p>
-                📅 <strong>Fecha creación:</strong>
-                {{ tarea.fechaCreacion }}
-            </p>
-
-            <p>
-                🛠️ <strong>Fecha estimada:</strong>
-                {{ tarea.fechaLimite }}
-            </p>
+            <span class="prioridad" [class.alta]="tarea.prioridad === 'ALTA'"
+                [class.media]="tarea.prioridad === 'MEDIA'" [class.baja]="tarea.prioridad === 'BAJA'">
+                {{ tarea.prioridad }}
+            </span>
 
         </div>
 
-    </div>
+        <div class="info-item">
+            <span class="label">Creación</span>
+            <span>{{ tarea.fechaCreacion }}</span>
+        </div>
 
-    <!-- PRIORIDAD -->
-    <div class="seccion">
-
-        <p class="seccion-titulo">
-            Prioridad
-        </p>
-
-        <span
-            class="prioridad"
-            [class.alta]="tarea.prioridad === 'ALTA'"
-            [class.media]="tarea.prioridad === 'MEDIA'"
-            [class.baja]="tarea.prioridad === 'BAJA'"
-        >
-            {{ tarea.prioridad }}
-        </span>
+        <div class="info-item">
+            <span class="label">Fecha Objetivo</span>
+            <span>{{ tarea.fechaLimite }}</span>
+        </div>
 
     </div>
 
     <!-- EMPLEADOS -->
-    <div class="seccion">
+    <div class="empleados-lista" *ngIf="tarea.asignados?.length">
 
-        <p class="seccion-titulo">
-            Empleados asignados
-        </p>
-
-        <div class="empleados-lista">
-
-            <span
-                class="empleado-chip"
-                *ngFor="let empleado of tarea.empleados"
-            >
-                {{ empleado }}
-            </span>
-
-        </div>
+        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">
+            {{ asignado }}
+        </span>
 
     </div>
 
     <!-- ACCIONES -->
     <div class="acciones">
 
-        <button
-            class="btn-primary"
-            (click)="verDetalle.emit()"
-        >
+        <button class="btn-primary" (click)="verDetalle.emit()">
             Ver detalle
         </button>
 
-        <button
-            class="btn-secondary"
-            (click)="editar.emit()"
-        >
+        <button class="btn-secondary" (click)="editar.emit()">
             Editar
         </button>
 

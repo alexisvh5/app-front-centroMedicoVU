@@ -11,19 +11,19 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'ALTA',
         fechaCreacion: '2026-05-20',
         fechaLimite: '2026-05-25',
-        empleados: ['Jorge', 'Luisina']
+        asignados: ['Jorge', 'Luisina']
     },
 
     {
         id: 2,
         titulo: 'Cambiar luminaria',
-        descripcion: 'La luz del pasillo principal no funciona.',
+        descripcion: 'La luz del pasillo principal no funciona.La luz del pasillo principal no funciona.La luz del pasillo principal no funciona.',
         estado: 'FINALIZADO',
         sector: 'Pasillo',
         prioridad: 'ALTA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        empleados: ['Carlos']
+        asignados: ['Carlos']
     },
         {
         id: 3,
@@ -34,7 +34,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        empleados: ['Carlos']
+        asignados: ['Carlos']
     },    {
         id: 4,
         titulo: 'Cambiar Lampara',
@@ -44,7 +44,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        empleados: ['Carlos']
+        asignados: ['Carlos']
     }
 
 ];

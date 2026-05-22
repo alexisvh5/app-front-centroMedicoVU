@@ -2,11 +2,11 @@
 
     background: white;
 
-    border-radius: 22px;
+    border-radius: 18px;
 
-    padding: 1.5rem;
+    padding: 1rem;
 
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
 
     display: flex;
 
@@ -14,14 +14,18 @@
 
     gap: 1rem;
 
-    border-left: 6px solid var(--color-primary);
+    border-left: 5px solid var(--color-primary);
 
-    transition: .25s;
+    transition: .2s ease;
+
+    min-height: 100%;
 }
 
 .tarea-card:hover {
 
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
 }
 
 /* =========================
@@ -36,7 +40,7 @@
 
     align-items: flex-start;
 
-    gap: 1rem;
+    gap: .8rem;
 }
 
 .titulo-container {
@@ -45,36 +49,44 @@
 
     flex-direction: column;
 
-    gap: .25rem;
+    gap: .2rem;
 }
 
 .top h3 {
 
-    font-size: 1.1rem;
+    margin: 0;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+
+    color: #0f172a;
+
+    line-height: 1.25;
+}
+
+.subarea {
 
     margin: 0;
 
-    font-weight: 700;
-}
+    font-size: .82rem;
 
-.top small {
+    color: #64748b;
 
-    color: var(--color-text-secondary);
-
-    font-size: .85rem;
+    font-weight: 500;
 }
 
 /* =========================
-   ESTADOS
+   ESTADO
 ========================= */
 
 .estado {
 
-    padding: .45rem .85rem;
+    padding: .35rem .75rem;
 
     border-radius: 999px;
 
-    font-size: .78rem;
+    font-size: .72rem;
 
     font-weight: 700;
 
@@ -108,59 +120,65 @@
 
 .descripcion {
 
-    color: var(--color-text-secondary);
-
-    line-height: 1.5;
-
     margin: 0;
-}
 
-/* =========================
-   SECCIONES
-========================= */
-
-.seccion {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: .7rem;
-}
-
-.seccion-titulo {
+    color: #475569;
 
     font-size: .9rem;
 
-    font-weight: 700;
+    line-height: 1.45;
 
-    color: #64748b;
+    display: -webkit-box;
 
-    margin: 0;
+    -webkit-line-clamp: 3;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
 }
 
 /* =========================
-   INFORMACION
+   INFO GRID
 ========================= */
 
-.info {
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: .9rem;
+}
+
+.info-item {
 
     display: flex;
 
     flex-direction: column;
 
-    gap: .6rem;
+    gap: .25rem;
 }
 
-.info p {
+.label {
 
-    margin: 0;
+    font-size: .72rem;
 
-    font-size: .92rem;
+    font-weight: 700;
 
-    color: #334155;
+    text-transform: uppercase;
 
-    line-height: 1.4;
+    letter-spacing: .03em;
+
+    color: #94a3b8;
+}
+
+.info-item span:last-child {
+
+    font-size: .88rem;
+
+    color: #1e293b;
+
+    font-weight: 500;
 }
 
 /* =========================
@@ -171,11 +189,11 @@
 
     width: fit-content;
 
-    padding: 6px 12px;
+    padding: .3rem .7rem;
 
     border-radius: 999px;
 
-    font-size: .8rem;
+    font-size: .72rem;
 
     font-weight: 700;
 
@@ -184,17 +202,18 @@
 
 .prioridad.alta {
 
-    background-color: #dc2626;
+    background: #dc2626;
+    color: white !important;
 }
 
 .prioridad.media {
 
-    background-color: #f59e0b;
+    background: #f59e0b;
 }
 
 .prioridad.baja {
 
-    background-color: #16a34a;
+    background: #16a34a;
 }
 
 /* =========================
@@ -207,7 +226,7 @@
 
     flex-wrap: wrap;
 
-    gap: .6rem;
+    gap: .45rem;
 }
 
 .empleado-chip {
@@ -216,11 +235,11 @@
 
     color: var(--color-primary);
 
-    padding: .45rem .85rem;
+    padding: .35rem .7rem;
 
     border-radius: 999px;
 
-    font-size: .8rem;
+    font-size: .72rem;
 
     font-weight: 600;
 }
@@ -233,30 +252,36 @@
 
     display: flex;
 
-    gap: 1rem;
+    gap: .7rem;
 
-    margin-top: .5rem;
+    margin-top: auto;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-secondary {
 
     flex: 1;
 
     border: none;
 
-    background: var(--color-primary);
+    padding: .75rem;
 
-    color: white;
-
-    padding: .85rem;
-
-    border-radius: 999px;
+    border-radius: 12px;
 
     cursor: pointer;
+
+    font-size: .85rem;
 
     font-weight: 600;
 
     transition: .2s;
+}
+
+.btn-primary {
+
+    background: var(--color-primary);
+
+    color: white;
 }
 
 .btn-primary:hover {
@@ -266,28 +291,14 @@
 
 .btn-secondary {
 
-    flex: 1;
+    background: #f1f5f9;
 
-    border: none;
-
-    background: #eef2ff;
-
-    color: #3730a3;
-
-    padding: .85rem;
-
-    border-radius: 999px;
-
-    cursor: pointer;
-
-    font-weight: 600;
-
-    transition: .2s;
+    color: #334155;
 }
 
 .btn-secondary:hover {
 
-    background: #dbe4ff;
+    background: #e2e8f0;
 }
 
 /* =========================
@@ -296,12 +307,29 @@
 
 .tarea-card.no-realizado {
 
-    border-left: 6px solid #dc2626;
+    border-left-color: #dc2626;
 
-    background-color: #fff5f5;
+    background: #fffafa;
 }
 
 .tarea-card.no-realizado .top h3 {
 
     color: #b91c1c;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 640px) {
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .acciones {
+
+        flex-direction: column;
+    }
 }

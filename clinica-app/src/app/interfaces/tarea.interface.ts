@@ -22,5 +22,5 @@ export interface Tarea {
 
     observaciones?: string;
 
-    empleados: string[];
+    asignados: string[];
 }
