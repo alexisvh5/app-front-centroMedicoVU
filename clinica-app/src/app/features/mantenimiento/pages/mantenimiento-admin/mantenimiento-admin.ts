@@ -45,6 +45,11 @@ export class MantenimientoAdmin {
 
     this.mostrarModal = true;
   }
+  descargarPdf(){
+    // Aquí iría la lógica para generar y descargar el PDF
+    console.log('Descargando PDF con las tareas...');
+    
+  }
 
   abrirDetalle(tarea: any) {
 
@@ -60,4 +65,17 @@ export class MantenimientoAdmin {
 
     this.mostrarModal = true;
   }
+
+  get tareasActivas() {
+    const orden: Record<string, number> = { 'NO_REALIZADO': 0, 'PENDIENTE': 1 };
+    return this.tareas
+      .filter(t => t.estado !== 'FINALIZADO')
+      .sort((a, b) => (orden[a.estado] ?? 2) - (orden[b.estado] ?? 2));
+  }
+
+  get tareasFinalizadas() {
+    return this.tareas.filter(t => t.estado === 'FINALIZADO');
+  }
+
+  vistaActual: 'activas' | 'finalizadas' = 'activas';
 }

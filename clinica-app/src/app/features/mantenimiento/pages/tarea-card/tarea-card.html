@@ -1,79 +1,83 @@
-<div class="tarea-card" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
+<div class="tarea-card" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'" [class.open]="isOpen">
 
-    <!-- HEADER -->
-    <div class="top">
+  <!-- HEADER MOBILE (solo visible en mobile, clickeable) -->
+  <div class="card-header" (click)="isOpen = !isOpen">
+    <div class="header-main">
+      <div class="titulo">Aire acondicionado {{ tarea.tipoRequerimiento }}</div>
+      <div class="asignados-mini">
+        <span class="chip-mini" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
+      </div>
+    </div>
+    <span class="estado"
+      [class.pendiente]="tarea.estado === 'PENDIENTE'"
+      [class.finalizado]="tarea.estado === 'FINALIZADO'"
+      [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+      {{ tarea.estado }}
+    </span>
+    <i class="ti ti-chevron-down chevron"></i>
+  </div>
 
+  <!-- CONTENIDO -->
+  <div class="card-body">
+    <div class="card-body-inner">
+      <div class="card-body-content">
 
-        <div class="titulo-container">
-
-            <h3>
-                Aire acondicionado {{ tarea.tipoRequiriemiento }}
-            </h3>
-
-        </div>
-        <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
+        <!-- Estado visible solo en desktop (en el body) -->
+        <div class="top">
+          <div class="titulo-container">
+            <h3>Aire acondicionado {{ tarea.tipoRequerimiento }}</h3>
+          </div>
+          <span class="estado desktop-estado"
+            [class.pendiente]="tarea.estado === 'PENDIENTE'"
             [class.finalizado]="tarea.estado === 'FINALIZADO'"
             [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
             {{ tarea.estado }}
-        </span>
+          </span>
+        </div>
 
-    </div>
+        <p class="descripcion">{{ tarea.descripcion }}</p>
 
-    <!-- DESCRIPCION -->
-    <p class="descripcion">
-        {{ tarea.descripcion }}
-    </p>
-
-    <!-- INFO RAPIDA -->
-    <div class="info-grid">
-
-        <div class="info-item">
+        <div class="info-grid">
+          <div class="info-item">
             <span class="label">Local</span>
             <span>831{{ tarea.localSolicitante }}</span>
-        </div>
-
-        <div class="info-item">
+          </div>
+          <div class="info-item">
             <span class="label">Prioridad</span>
-
-            <span class="prioridad" [class.alta]="tarea.prioridad === 'ALTA'"
-                [class.media]="tarea.prioridad === 'MEDIA'" [class.baja]="tarea.prioridad === 'BAJA'">
-                {{ tarea.prioridad }}
+            <span class="prioridad"
+              [class.alta]="tarea.prioridad === 'ALTA'"
+              [class.media]="tarea.prioridad === 'MEDIA'"
+              [class.baja]="tarea.prioridad === 'BAJA'">
+              {{ tarea.prioridad }}
             </span>
-
-        </div>
-
-        <div class="info-item">
+          </div>
+          <div class="info-item">
             <span class="label">Creación</span>
             <span>{{ tarea.fechaCreacion }}</span>
-        </div>
-
-        <div class="info-item">
+          </div>
+          <div class="info-item">
             <span class="label">Fecha Objetivo</span>
             <span>{{ tarea.fechaLimite }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Sector</span>
+            <span>{{ tarea.sector }}</span>
+          </div>
         </div>
 
+        <div class="empleados-lista" *ngIf="tarea.asignados?.length">
+          <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
+        </div>
+
+        <div class="acciones" *ngIf="tarea.estado !== 'FINALIZADO'">
+          <button class="btn-primary">
+                Finalizar tarea
+            </button>
+          <button class="btn-secondary" (click)="editar.emit()">Editar</button>
+        </div>
+
+      </div>
     </div>
-
-    <!-- EMPLEADOS -->
-    <div class="empleados-lista" *ngIf="tarea.asignados?.length">
-
-        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">
-            {{ asignado }}
-        </span>
-
-    </div>
-
-    <!-- ACCIONES -->
-    <div class="acciones">
-
-        <button class="btn-primary" (click)="verDetalle.emit()">
-            Ver detalle
-        </button>
-
-        <button class="btn-secondary" (click)="editar.emit()">
-            Editar
-        </button>
-
-    </div>
+  </div>
 
 </div>

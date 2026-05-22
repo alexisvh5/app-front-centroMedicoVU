@@ -1,335 +1,310 @@
-.tarea-card {
-
-    background: white;
-
-    border-radius: 18px;
-
-    padding: 1rem;
-
-    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 1rem;
-
-    border-left: 5px solid var(--color-primary);
-
-    transition: .2s ease;
-
-    min-height: 100%;
-}
-
-.tarea-card:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+:root {
+  --color-primary: #6366f1;
+  --color-primary-soft: #eef2ff;
 }
 
 /* =========================
-   HEADER
+   BASE CARD
 ========================= */
+.tarea-card {
+  background: white;
+  border-radius: 18px;
+  border-left: 5px solid var(--color-primary);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  transition: .2s ease;
+  min-height: 100%;
+}
 
+.tarea-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+}
+
+.tarea-card.no-realizado {
+  border-left-color: #dc2626;
+  background: #fffafa;
+}
+
+.tarea-card.no-realizado .top h3 {
+  color: #b91c1c;
+}
+
+/* =========================
+   MOBILE HEADER (oculto en desktop)
+========================= */
+.card-header {
+  display: none;
+}
+
+/* =========================
+   BODY — desktop: siempre visible
+========================= */
+.card-body {
+  display: block;
+}
+
+.card-body-inner {
+  display: block;
+}
+
+.card-body-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* =========================
+   HEADER DESKTOP (dentro del body)
+========================= */
 .top {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    gap: .8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: .8rem;
 }
 
 .titulo-container {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: .2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
 }
 
 .top h3 {
-
-    margin: 0;
-
-    font-size: 1rem;
-
-    font-weight: 700;
-
-    color: #0f172a;
-
-    line-height: 1.25;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
 }
 
 .subarea {
-
-    margin: 0;
-
-    font-size: .82rem;
-
-    color: #64748b;
-
-    font-weight: 500;
+  margin: 0;
+  font-size: .82rem;
+  color: #64748b;
+  font-weight: 500;
 }
 
 /* =========================
    ESTADO
 ========================= */
-
 .estado {
-
-    padding: .35rem .75rem;
-
-    border-radius: 999px;
-
-    font-size: .72rem;
-
-    font-weight: 700;
-
-    white-space: nowrap;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.pendiente {
-
-    background: #fff7ed;
-
-    color: #ea580c;
-}
-
-.finalizado {
-
-    background: #dcfce7;
-
-    color: #15803d;
-}
-
-.no-realizado-text {
-
-    background: #fee2e2;
-
-    color: #b91c1c;
-}
+.pendiente { background: #fff7ed; color: #ea580c; }
+.finalizado { background: #dcfce7; color: #15803d; }
+.no-realizado-text { background: #fee2e2; color: #b91c1c; }
 
 /* =========================
    DESCRIPCION
 ========================= */
-
 .descripcion {
-
-    margin: 0;
-
-    color: #475569;
-
-    font-size: .9rem;
-
-    line-height: 1.45;
-
-    display: -webkit-box;
-
-    -webkit-line-clamp: 3;
-
-    -webkit-box-orient: vertical;
-
-    overflow: hidden;
+  margin: 0;
+  color: #475569;
+  font-size: .9rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* =========================
    INFO GRID
 ========================= */
-
 .info-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: .9rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .9rem;
 }
 
 .info-item {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: .25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
 }
 
 .label {
-
-    font-size: .72rem;
-
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    letter-spacing: .03em;
-
-    color: #94a3b8;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: #94a3b8;
 }
 
 .info-item span:last-child {
-
-    font-size: .88rem;
-
-    color: #1e293b;
-
-    font-weight: 500;
+  font-size: .88rem;
+  color: #1e293b;
+  font-weight: 500;
 }
 
 /* =========================
    PRIORIDAD
 ========================= */
-
 .prioridad {
-
-    width: fit-content;
-
-    padding: .3rem .7rem;
-
-    border-radius: 999px;
-
-    font-size: .72rem;
-
-    font-weight: 700;
-
-    color: white;
+  width: fit-content;
+  padding: .3rem .7rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  color: white;
 }
 
-.prioridad.alta {
-
-    background: #dc2626;
-    color: white !important;
-}
-
-.prioridad.media {
-
-    background: #f59e0b;
-}
-
-.prioridad.baja {
-
-    background: #16a34a;
-}
+.alta { background: #dc2626; color: white !important;}
+.media { background: #f59e0b; }
+.baja { background: #16a34a; }
 
 /* =========================
    EMPLEADOS
 ========================= */
-
 .empleados-lista {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: .45rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
 }
 
 .empleado-chip {
-
-    background: var(--color-primary-soft);
-
-    color: var(--color-primary);
-
-    padding: .35rem .7rem;
-
-    border-radius: 999px;
-
-    font-size: .72rem;
-
-    font-weight: 600;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 600;
 }
 
 /* =========================
    ACCIONES
 ========================= */
-
 .acciones {
-
-    display: flex;
-
-    gap: .7rem;
-
-    margin-top: auto;
+  display: flex;
+  gap: .7rem;
+  margin-top: auto;
 }
 
-.btn-primary,
-.btn-secondary {
-
-    flex: 1;
-
-    border: none;
-
-    padding: .75rem;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    font-size: .85rem;
-
-    font-weight: 600;
-
-    transition: .2s;
+.btn-primary, .btn-secondary {
+  flex: 1;
+  border: none;
+  padding: .75rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: .2s;
 }
 
 .btn-primary {
-
-    background: var(--color-primary);
-
-    color: white;
+  background: var(--color-primary);
+  color: white;
 }
 
-.btn-primary:hover {
-
-    opacity: .92;
-}
+.btn-primary:hover { opacity: .92; }
 
 .btn-secondary {
-
-    background: #f1f5f9;
-
-    color: #334155;
+  background: #f1f5f9;
+  color: #334155;
 }
 
-.btn-secondary:hover {
-
-    background: #e2e8f0;
-}
+.btn-secondary:hover { background: #e2e8f0; }
 
 /* =========================
-   CARD NO REALIZADA
+   MOBILE
 ========================= */
-
-.tarea-card.no-realizado {
-
-    border-left-color: #dc2626;
-
-    background: #fffafa;
-}
-
-.tarea-card.no-realizado .top h3 {
-
-    color: #b91c1c;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media (max-width: 640px) {
 
-    .info-grid {
+  /* Mostrar header clickeable */
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: .75rem 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
 
-        grid-template-columns: 1fr;
-    }
+  .card-header:hover {
+    background: #f8fafc;
+  }
 
-    .acciones {
+  .header-main {
+    flex: 1;
+    min-width: 0;
+  }
 
-        flex-direction: column;
-    }
+  .titulo {
+    font-size: .9rem;
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tarea-card.no-realizado .titulo {
+    color: #b91c1c;
+  }
+
+  .asignados-mini {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .chip-mini {
+    background: #f1f5f9;
+    color: #475569;
+    padding: .15rem .5rem;
+    border-radius: 999px;
+    font-size: .68rem;
+    font-weight: 500;
+  }
+
+  /* Chevron animado */
+  .chevron {
+    color: #94a3b8;
+    font-size: 18px;
+    transition: transform .25s;
+    flex-shrink: 0;
+  }
+
+  .tarea-card.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Ocultar el .top del desktop dentro del body */
+  .top,
+  .desktop-estado {
+    display: none;
+  }
+
+  /* Colapsar el body */
+  .card-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .3s ease;
+  }
+
+  .tarea-card.open .card-body {
+    grid-template-rows: 1fr;
+  }
+
+  .card-body-inner {
+    overflow: hidden;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+  }
+
+  /* Info y acciones en columna */
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .acciones {
+    flex-direction: column;
+  }
 }

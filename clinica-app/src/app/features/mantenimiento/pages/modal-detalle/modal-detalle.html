@@ -5,7 +5,7 @@
         <div class="header">
 
             <h2>
-                Detalle de tarea
+                Aire acondicionado {{ tarea.tipoRequiriemiento }}
             </h2>
 
             <button (click)="cerrar.emit()">
@@ -16,20 +16,16 @@
 
         <div class="detalle">
 
-            <h3>
-                {{ tarea?.titulo }}
-            </h3>
-
             <p>
                 {{ tarea?.descripcion }}
             </p>
 
             <div class="fila">
 
-                <strong>Estado:</strong>
+                <strong>Creación:</strong>
 
                 <span>
-                    {{ tarea?.estado }}
+                    {{ tarea.fechaCreacion }}
                 </span>
 
             </div>

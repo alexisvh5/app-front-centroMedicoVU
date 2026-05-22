@@ -15,4 +15,5 @@ export class TareaCard {
   @Output() verDetalle = new EventEmitter();
 
   @Output() editar = new EventEmitter();
+  isOpen = false;
 }

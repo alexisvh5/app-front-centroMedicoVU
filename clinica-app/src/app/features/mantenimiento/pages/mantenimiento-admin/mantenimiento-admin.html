@@ -3,24 +3,42 @@
 <div class="contenedor">
 
     <div class="header">
-
         <div>
             <h1>Mantenimiento</h1>
             <p>Gestión de tareas y mantenimiento</p>
         </div>
-
-        <button class="nueva-tarea" (click)="abrirModal()">
-            + Nueva tarea
-        </button>
-
+        <div class="acciones-header">
+            <button class="nueva-tarea" (click)="abrirModal()">+ Nueva tarea</button>
+            <button class="descargar-pdf" (click)="descargarPdf()">Descargar pdf</button>
+        </div>
     </div>
 
-    <div class="grid-tareas">
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab" [class.activo]="vistaActual === 'activas'" (click)="vistaActual = 'activas'">
+            Activas
+            <span class="badge">{{ tareasActivas.length }}</span>
+        </button>
+        <button class="tab" [class.activo]="vistaActual === 'finalizadas'" (click)="vistaActual = 'finalizadas'">
+            Finalizadas
+            <span class="badge finalizadas">{{ tareasFinalizadas.length }}</span>
+        </button>
+    </div>
 
-        <app-tarea-card *ngFor="let tarea of tareas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
+    <!-- ACTIVAS -->
+    <div class="grid-tareas" *ngIf="vistaActual === 'activas'">
+        <app-tarea-card *ngFor="let tarea of tareasActivas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
             (editar)="abrirEditar(tarea)">
         </app-tarea-card>
+        <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
+    </div>
 
+    <!-- FINALIZADAS -->
+    <div class="grid-tareas" *ngIf="vistaActual === 'finalizadas'">
+        <app-tarea-card *ngFor="let tarea of tareasFinalizadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
+            (editar)="abrirEditar(tarea)">
+        </app-tarea-card>
+        <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
     </div>
 
 </div>
