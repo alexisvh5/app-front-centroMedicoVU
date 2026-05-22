@@ -1,0 +1,33 @@
+<app-header></app-header>
+
+<div class="contenedor">
+
+    <div class="header">
+
+        <div>
+            <h1>Mantenimiento</h1>
+            <p>Gestión de tareas y mantenimiento</p>
+        </div>
+
+        <button class="nueva-tarea" (click)="abrirModal()">
+            + Nueva tarea
+        </button>
+
+    </div>
+
+    <div class="grid-tareas">
+
+        <app-tarea-card *ngFor="let tarea of tareas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
+            (editar)="abrirEditar(tarea)">
+        </app-tarea-card>
+
+    </div>
+
+</div>
+
+<app-modal-tarea [visible]="mostrarModal" [modo]="modoModal" [tarea]="tareaSeleccionada"
+    (cerrar)="mostrarModal = false">
+</app-modal-tarea>
+
+<app-modal-detalle [visible]="mostrarDetalle" [tarea]="tareaSeleccionada" (cerrar)="mostrarDetalle = false">
+</app-modal-detalle>

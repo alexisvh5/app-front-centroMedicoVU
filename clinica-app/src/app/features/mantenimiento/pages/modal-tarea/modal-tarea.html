@@ -1,0 +1,111 @@
+<div class="overlay-tarea" *ngIf="visible">
+
+    <div class="modal-tarea">
+
+        <div class="header">
+
+            <h2>
+                {{ modo === 'crear' ? 'Nueva tarea' : 'Editar tarea' }}
+            </h2>
+
+            <button (click)="cerrar.emit()">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="contenido">
+
+            <label>Título</label>
+
+            <input
+                type="text"
+                [(ngModel)]="tarea.titulo"
+            >
+
+            <label>Descripción</label>
+
+            <textarea
+                rows="5"
+                [(ngModel)]="tarea.descripcion"
+            ></textarea>
+
+            <label>Sector</label>
+
+            <select [(ngModel)]="tarea.sector">
+
+                <option>Consultorios</option>
+
+                <option>Guardia</option>
+
+                <option>Pasillos</option>
+
+            </select>
+
+            <label>Prioridad</label>
+
+            <select [(ngModel)]="tarea.prioridad">
+
+                <option>ALTA</option>
+
+                <option>MEDIA</option>
+
+                <option>BAJA</option>
+
+            </select>
+
+            <label>Asignar empleados</label>
+
+            <div class="empleados-grid">
+
+                <div
+                    class="empleado-item"
+                    *ngFor="let empleado of empleadosDisponibles"
+                >
+
+                    <input
+                        type="checkbox"
+
+                        [checked]="tarea.empleados.includes(empleado)"
+
+                        (change)="toggleEmpleado(empleado)"
+                    >
+
+                    <span>
+                        {{ empleado }}
+                    </span>
+
+                </div>
+
+            </div>
+
+            <label>Fecha límite</label>
+
+            <input
+                type="date"
+                [(ngModel)]="tarea.fechaLimite"
+            >
+
+        </div>
+
+        <div class="acciones">
+
+            <button
+                class="btn-secondary"
+                (click)="cerrar.emit()"
+            >
+                Cancelar
+            </button>
+
+            <button
+                class="btn-primary"
+                (click)="guardar()"
+            >
+                Guardar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

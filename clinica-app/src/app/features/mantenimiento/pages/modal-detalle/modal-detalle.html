@@ -1,0 +1,87 @@
+<div class="overlay-detalle" *ngIf="visible">
+
+    <div class="modal-detalle">
+
+        <div class="header">
+
+            <h2>
+                Detalle de tarea
+            </h2>
+
+            <button (click)="cerrar.emit()">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="detalle">
+
+            <h3>
+                {{ tarea?.titulo }}
+            </h3>
+
+            <p>
+                {{ tarea?.descripcion }}
+            </p>
+
+            <div class="fila">
+
+                <strong>Estado:</strong>
+
+                <span>
+                    {{ tarea?.estado }}
+                </span>
+
+            </div>
+
+            <div class="fila">
+
+                <strong>Sector:</strong>
+
+                <span>
+                    {{ tarea?.sector }}
+                </span>
+
+            </div>
+
+            <div class="fila">
+
+                <strong>Prioridad:</strong>
+
+                <span>
+                    {{ tarea?.prioridad }}
+                </span>
+
+            </div>
+
+            <div class="fila">
+
+                <strong>Fecha límite:</strong>
+
+                <span>
+                    {{ tarea?.fechaLimite }}
+                </span>
+
+            </div>
+
+            <div class="empleados">
+
+                <span *ngFor="let emp of tarea?.empleados">
+                    {{ emp }}
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="acciones">
+
+            <button class="btn-primary">
+                Finalizar tarea
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

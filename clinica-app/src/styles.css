@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+
+    /* FUENTE */
+
+    --font-primary: 'Montserrat', sans-serif  !important;
+
+    /* COLORES PRINCIPALES */
+
+    --color-primary: #007865;
+    --color-primary-light: #0b9b84;
+    --color-primary-soft: #e8f6f3;
+
+    /* GRISES */
+
+    --color-background: #f5f7f7;
+    --color-surface: #ffffff;
+
+    --color-text: #1f1f1f;
+    --color-text-secondary: #666666;
+
+    /* SOMBRAS */
+
+    --shadow-card: 0 4px 18px rgba(0,0,0,0.06);
+
+    /* BORDES */
+
+    --radius-large: 22px;
+    --radius-medium: 12px;
+
+    /* TRANSITIONS */
+
+    --transition-default: 0.25s ease;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+
+    width: 100%;
+
+    height: 100%;
+
+    min-height: 100vh;
+
+    font-family: var(--font-primary);
+
+    background: var(--color-background);
+
+    color: var(--color-text);
+}
+body {
+    overflow-x: hidden;
+}

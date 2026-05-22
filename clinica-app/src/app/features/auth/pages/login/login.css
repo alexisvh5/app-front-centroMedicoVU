@@ -1,0 +1,168 @@
+:host {
+    display: block;
+    min-height: 100vh;
+}
+
+/* CONTAINER */
+
+.login-container {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)),
+        url('/assets/img/fondo3.jpg');
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+/* CARD */
+
+.login-card {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    background: rgba(255,255,255,0.96);
+
+    backdrop-filter: blur(6px);
+
+    border-radius: 24px;
+
+    padding: 32px 24px;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+}
+
+/* LOGO */
+
+.logo {
+
+    width: 95px;
+
+    height: 95px;
+
+    object-fit: contain;
+}
+
+/* TITULOS */
+
+.titulo {
+
+    color: var(--color-primary);
+
+    font-weight: 800;
+
+    font-size: 1.7rem;
+}
+
+.subtitulo {
+
+    color: #666;
+
+    margin-top: -5px;
+
+    font-size: 0.95rem;
+}
+
+/* INPUTS */
+
+.input-custom {
+
+    height: 48px;
+
+    border-radius: 12px;
+
+    border: 1px solid #dcdcdc;
+}
+
+.input-custom:focus {
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 0.2rem rgba(0, 120, 101, 0.18);
+}
+
+/* PASSWORD */
+
+.password-container {
+
+    position: relative;
+}
+
+.toggle-password {
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--color-primary);
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* BOTON */
+
+.boton-login {
+
+    background: var(--color-primary);
+
+    color: white;
+
+    height: 48px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    border: none;
+
+    transition: 0.25s ease;
+}
+
+.boton-login:hover {
+
+    background: var(--color-primary-light);
+
+    transform: translateY(-1px);
+}
+
+/* MOBILE */
+
+@media (max-width: 576px) {
+
+    .login-card {
+
+        padding: 28px 20px;
+    }
+
+    .titulo {
+
+        font-size: 1.5rem;
+    }
+
+}

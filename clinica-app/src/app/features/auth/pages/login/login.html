@@ -1,0 +1,107 @@
+<div class="login-container">
+
+    <div class="login-card">
+
+        <div class="text-center mb-4">
+            <img src="assets/img/logo.png" alt="Urkupina" class="logo">
+
+            <h2 class="titulo mt-3">
+                Centro Médico Urkupina
+            </h2>
+
+            <p class="subtitulo">
+                Sistema de gestión de sectores
+            </p>
+        </div>
+
+        <div *ngIf="mensajeExito" class="alert alert-success">
+            {{ mensajeExito }}
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="loguearse()">
+
+            <!-- DNI -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    DNI
+                </label>
+
+                <input
+                    type="number"
+                    class="form-control input-custom"
+                    formControlName="dni"
+                    placeholder="Ingresá tu DNI">
+
+                <small
+                    class="text-danger"
+                    *ngIf="(loginForm.controls['dni'].touched || submitted)
+                    && loginForm.controls['dni'].invalid">
+
+                    El DNI es obligatorio
+
+                </small>
+
+            </div>
+
+            <!-- PASSWORD -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Contraseña
+                </label>
+
+                <div class="password-container">
+
+                    <input
+                        [type]="mostrarPassword ? 'text' : 'password'"
+                        class="form-control input-custom"
+                        formControlName="password"
+                        placeholder="Ingresá tu contraseña">
+
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        (click)="togglePassword()">
+
+                        {{ mostrarPassword ? 'Ocultar' : 'Ver' }}
+
+                    </button>
+
+                </div>
+
+                <small
+                    class="text-danger"
+                    *ngIf="(loginForm.controls['password'].touched || submitted)
+                    && loginForm.controls['password'].invalid">
+
+                    La contraseña es obligatoria
+
+                </small>
+
+            </div>
+
+            <!-- BOTON -->
+
+            <button
+                type="submit"
+                class="btn boton-login w-100"
+                (click)="loguearse()"
+                [disabled]="loading">
+
+                {{ loading ? 'Ingresando...' : 'Iniciar sesión' }}
+            </button>
+
+            <!-- ERROR -->
+
+            <div *ngIf="mensajeError" class="alert alert-danger mt-3">
+                {{ mensajeError }}
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

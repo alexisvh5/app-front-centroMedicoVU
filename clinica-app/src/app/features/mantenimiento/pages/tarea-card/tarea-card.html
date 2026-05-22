@@ -1,0 +1,50 @@
+<div class="tarea-card">
+
+    <div class="top">
+
+        <h3>{{ tarea.titulo }}</h3>
+
+        <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
+            [class.finalizado]="tarea.estado === 'FINALIZADO'">
+            {{ tarea.estado }}
+        </span>
+
+    </div>
+
+    <p class="descripcion">
+        {{ tarea.descripcion }}
+    </p>
+
+    <div class="info">
+
+        <span>
+            📍 {{ tarea.sector }}
+        </span>
+
+        <span>
+            📅 {{ tarea.fechaLimite }}
+        </span>
+
+    </div>
+
+    <div class="empleados">
+
+        <span *ngFor="let empleado of tarea.empleados">
+            {{ empleado }}
+        </span>
+
+    </div>
+
+    <div class="acciones">
+
+        <button class="btn-primary" (click)="verDetalle.emit()">
+            Ver detalle
+        </button>
+
+        <button class="btn-secondary" (click)="editar.emit()">
+            Editar
+        </button>
+
+    </div>
+
+</div>

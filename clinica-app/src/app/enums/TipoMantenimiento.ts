@@ -1,0 +1,20 @@
+export enum TipoMantenimiento {
+    AIRE_ACONDICIONADO,
+    CALEFACCION_CENTRAL,
+    MUEBLERIA,
+    SISTEMAS_RED,
+    COMPUTADORAS,
+    LIMPIEZA,
+    PINTURA,
+    AGUA,
+    ELECTRICIDAD,
+    GAS,
+    PLOMERIA,
+    GRIFERIA,
+    CONSTRUCCION,
+    HERRERIA,
+    REPARACION,
+    FILTROS,
+    VARIOS,
+    OTROS
+}
