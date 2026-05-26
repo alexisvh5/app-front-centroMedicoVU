@@ -25,16 +25,124 @@
         </button>
     </div>
 
-    <!-- ACTIVAS -->
-    <div class="grid-tareas" *ngIf="vistaActual === 'activas'">
+    <!-- ACTIVAS - Desktop table -->
+    <div class="tabla-wrapper desktop-only" *ngIf="vistaActual === 'activas'">
+        <table class="tabla-tareas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Estado</th>
+                    <th>Prioridad</th>
+                    <th>Sector</th>
+                    <th>Creación</th>
+                    <th>Objetivo</th>
+                    <th>Asignados</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tarea of tareasActivas; let i = index" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
+                    <td class="td-titulo">{{ tarea.titulo }}</td>
+                    <td>
+                        <span class="estado"
+                            [class.pendiente]="tarea.estado === 'PENDIENTE'"
+                            [class.finalizado]="tarea.estado === 'FINALIZADO'"
+                            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+                            {{ tarea.estado }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="prioridad"
+                            [class.alta]="tarea.prioridad === 'ALTA'"
+                            [class.media]="tarea.prioridad === 'MEDIA'"
+                            [class.baja]="tarea.prioridad === 'BAJA'">
+                            {{ tarea.prioridad }}
+                        </span>
+                    </td>
+                    <td>{{ tarea.sector }}</td>
+                    <td>{{ tarea.fechaCreacion }}</td>
+                    <td>{{ tarea.fechaLimite }}</td>
+                    <td>
+                        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
+                        <span class="sin-asignados" *ngIf="!tarea.asignados?.length">—</span>
+                    </td>
+                    <td class="td-acciones">
+                        <div class="acciones-btns">
+                            <button class="btn-tabla ver" (click)="abrirDetalle(tarea)" title="Ver detalle">Ver</button>
+                            <button class="btn-tabla editar" (click)="abrirEditar(tarea)" title="Editar">Editar</button>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
+    </div>
+
+    <!-- ACTIVAS - Mobile cards -->
+    <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'activas'">
         <app-tarea-card *ngFor="let tarea of tareasActivas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
             (editar)="abrirEditar(tarea)">
         </app-tarea-card>
         <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
     </div>
 
-    <!-- FINALIZADAS -->
-    <div class="grid-tareas" *ngIf="vistaActual === 'finalizadas'">
+    <!-- FINALIZADAS - Desktop table -->
+    <div class="tabla-wrapper desktop-only" *ngIf="vistaActual === 'finalizadas'">
+        <table class="tabla-tareas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Estado</th>
+                    <th>Prioridad</th>
+                    <th>Sector</th>
+                    <th>Creación</th>
+                    <th>Objetivo</th>
+                    <th>Asignados</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tarea of tareasFinalizadas; let i = index">
+                    <td class="td-titulo">{{ tarea.titulo }}</td>
+                    <td>
+                        <span class="estado"
+                            [class.pendiente]="tarea.estado === 'PENDIENTE'"
+                            [class.finalizado]="tarea.estado === 'FINALIZADO'"
+                            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+                            {{ tarea.estado }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="prioridad"
+                            [class.alta]="tarea.prioridad === 'ALTA'"
+                            [class.media]="tarea.prioridad === 'MEDIA'"
+                            [class.baja]="tarea.prioridad === 'BAJA'">
+                            {{ tarea.prioridad }}
+                        </span>
+                    </td>
+                    <td>{{ tarea.sector }}</td>
+                    <td>{{ tarea.fechaCreacion }}</td>
+                    <td>{{ tarea.fechaLimite }}</td>
+                    <td>
+                        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
+                        <span class="sin-asignados" *ngIf="!tarea.asignados?.length">—</span>
+                    </td>
+                    <td class="td-acciones">
+                        <div class="acciones-btns">
+                            <button class="btn-tabla ver" (click)="abrirDetalle(tarea)" title="Ver detalle">Ver</button>
+                            <button class="btn-tabla editar" (click)="abrirEditar(tarea)" title="Editar">Editar</button>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
+    </div>
+
+    <!-- FINALIZADAS - Mobile cards -->
+    <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'finalizadas'">
         <app-tarea-card *ngFor="let tarea of tareasFinalizadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
             (editar)="abrirEditar(tarea)">
         </app-tarea-card>

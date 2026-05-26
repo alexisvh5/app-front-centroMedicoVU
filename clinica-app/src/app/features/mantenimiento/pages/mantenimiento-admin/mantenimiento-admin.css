@@ -108,6 +108,202 @@
   grid-column: 1 / -1;
 }
 
+/* =========================
+   DESKTOP / MOBILE TOGGLE
+========================= */
+.desktop-only {
+  display: none;
+}
+
+.mobile-only {
+  /* display se hereda del elemento (ej: grid) */
+}
+
+/* =========================
+   TABLE — Excel-like
+========================= */
+.tabla-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+}
+
+.tabla-tareas {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85rem;
+  background: white;
+  min-width: 900px;
+}
+
+.tabla-tareas thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.tabla-tareas th {
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: .9rem .8rem;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.tabla-tareas td {
+  padding: .7rem .8rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+  color: #1e293b;
+}
+
+.tabla-tareas tbody tr {
+  transition: background .15s;
+}
+
+.tabla-tareas tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.tabla-tareas tbody tr:hover {
+  background: #f1f5f9;
+}
+
+.tabla-tareas tbody tr.no-realizado {
+  background: #fffbfb;
+}
+
+.tabla-tareas tbody tr.no-realizado:hover {
+  background: #fef2f2;
+}
+
+.tabla-tareas tbody tr.no-realizado .td-titulo {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.td-titulo {
+  font-weight: 600;
+  color: #0f172a;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.td-acciones {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.acciones-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .4rem;
+}
+
+.btn-tabla {
+  border: none;
+  padding: .4rem .75rem;
+  border-radius: 8px;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-tabla {
+  border: none;
+  padding: .4rem .75rem;
+  border-radius: 8px;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+  
+}
+
+.btn-tabla.ver {
+  background: var(--color-primary-soft, #e8f6f3);
+  color: var(--color-primary, #007865);
+}
+
+.btn-tabla.ver:hover {
+  background: #d1e8e3;
+}
+
+.btn-tabla.editar {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.btn-tabla.editar:hover {
+  background: #e2e8f0;
+}
+
+.sin-asignados {
+  color: #cbd5e1;
+}
+
+/* Reuse chip style for table */
+.tabla-tareas .empleado-chip {
+  display: inline-block;
+  background: var(--color-primary-soft, #e8f6f3);
+  color: var(--color-primary, #007865);
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 600;
+  margin: .1rem .15rem;
+  white-space: nowrap;
+}
+
+/* Reuse estado badges in table */
+.tabla-tareas .estado {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tabla-tareas .pendiente { background: #fff7ed; color: #ea580c; }
+.tabla-tareas .finalizado { background: #dcfce7; color: #15803d; }
+.tabla-tareas .no-realizado-text { background: #fee2e2; color: #b91c1c; }
+
+/* Reuse prioridad badges in table */
+.tabla-tareas .prioridad {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  color: white;
+}
+
+.tabla-tareas .alta { background: #dc2626; }
+.tabla-tareas .media { background: #f59e0b; }
+.tabla-tareas .baja { background: #16a34a; }
+
+/* =========================
+   DESKTOP (>640px)
+========================= */
+@media (min-width: 641px) {
+  .desktop-only {
+    display: block;
+  }
+  .mobile-only {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   .contenedor {
     padding: 1rem;
@@ -138,5 +334,6 @@
 
   .grid-tareas {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
