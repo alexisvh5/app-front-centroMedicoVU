@@ -97,9 +97,20 @@
   white-space: nowrap;
 }
 
-.pendiente { background: #fff7ed; color: #ea580c; }
-.finalizado { background: #dcfce7; color: #15803d; }
-.no-realizado-text { background: #fee2e2; color: #b91c1c; }
+.pendiente {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.finalizado {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.no-realizado-text {
+  background: #fee2e2;
+  color: #b91c1c;
+}
 
 /* =========================
    DESCRIPCION
@@ -126,7 +137,8 @@
 
 .info-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   gap: .25rem;
 }
 
@@ -136,6 +148,11 @@
   text-transform: uppercase;
   letter-spacing: .03em;
   color: #94a3b8;
+}
+
+.items-row {
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .info-item span:last-child {
@@ -156,9 +173,18 @@
   color: white;
 }
 
-.alta { background: #dc2626; color: white !important;}
-.media { background: #f59e0b; }
-.baja { background: #16a34a; }
+.alta {
+  background: #dc2626;
+  color: white !important;
+}
+
+.media {
+  background: #f59e0b;
+}
+
+.baja {
+  background: #16a34a;
+}
 
 /* =========================
    EMPLEADOS
@@ -187,7 +213,8 @@
   margin-top: auto;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   flex: 1;
   border: none;
   padding: .75rem;
@@ -203,14 +230,18 @@
   color: white;
 }
 
-.btn-primary:hover { opacity: .92; }
+.btn-primary:hover {
+  opacity: .92;
+}
 
 .btn-secondary {
   background: #f1f5f9;
   color: #334155;
 }
 
-.btn-secondary:hover { background: #e2e8f0; }
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
 
 /* =========================
    MOBILE
@@ -257,8 +288,8 @@
   }
 
   .chip-mini {
-    background: #f1f5f9;
-    color: #475569;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
     padding: .15rem .5rem;
     border-radius: 999px;
     font-size: .68rem;

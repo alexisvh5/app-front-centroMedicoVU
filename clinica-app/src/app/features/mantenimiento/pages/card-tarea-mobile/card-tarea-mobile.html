@@ -8,10 +8,8 @@
         <span class="chip-mini" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
       </div>
     </div>
-    <span class="estado"
-      [class.pendiente]="tarea.estado === 'PENDIENTE'"
-      [class.finalizado]="tarea.estado === 'FINALIZADO'"
-      [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+    <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
+      [class.finalizado]="tarea.estado === 'FINALIZADO'" [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
       {{ tarea.estado }}
     </span>
     <i class="ti ti-chevron-down chevron"></i>
@@ -27,8 +25,7 @@
           <div class="titulo-container">
             <h3>{{ tarea.tipoRequerimiento }}</h3>
           </div>
-          <span class="estado desktop-estado"
-            [class.pendiente]="tarea.estado === 'PENDIENTE'"
+          <span class="estado desktop-estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
             [class.finalizado]="tarea.estado === 'FINALIZADO'"
             [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
             {{ tarea.estado }}
@@ -38,41 +35,51 @@
         <p class="descripcion">{{ tarea.descripcion }}</p>
 
         <div class="info-grid">
-          <div class="info-item">
-            <span class="label">Local</span>
-            <span>831{{ tarea.localSolicitante }}</span>
+          <div class="info-item items-row">
+            <div class="info-item">
+              <span class="label">Local:</span>
+              <span>{{ tarea.local }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Sector:</span>
+              <span>{{ tarea.sector }}</span>
+            </div>
           </div>
           <div class="info-item">
-            <span class="label">Prioridad</span>
-            <span class="prioridad"
-              [class.alta]="tarea.prioridad === 'ALTA'"
-              [class.media]="tarea.prioridad === 'MEDIA'"
-              [class.baja]="tarea.prioridad === 'BAJA'">
+            <span class="label">Prioridad:</span>
+            <span class="prioridad" [class.alta]="tarea.prioridad === 'ALTA'"
+              [class.media]="tarea.prioridad === 'MEDIA'" [class.baja]="tarea.prioridad === 'BAJA'">
               {{ tarea.prioridad }}
             </span>
           </div>
-          <div class="info-item">
-            <span class="label">Creación</span>
-            <span>{{ tarea.fechaCreacion }}</span>
-          </div>
-          <div class="info-item">
-            <span class="label">Fecha Objetivo</span>
-            <span>{{ tarea.fechaLimite }}</span>
-          </div>
-          <div class="info-item">
-            <span class="label">Sector</span>
-            <span>{{ tarea.sector }}</span>
-          </div>
-        </div>
 
-        <div class="empleados-lista" *ngIf="tarea.asignados?.length">
-          <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
+          <div class="info-item items-row">
+            <div class="info-item">
+              <span class="label">Creación:</span>
+              <span>{{ tarea.fechaCreacion }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Fecha Objetivo:</span>
+              <span>{{ tarea.fechaLimite }}</span>
+            </div>
+          </div>
+
+          <div class="info-item items-row">
+            <div class="info-item">
+              <span class="label">Creador:</span>
+              <span>{{ tarea.creador }}</span>
+            </div>
+            <div class="info-item" *ngIf="tarea.asignados?.length">
+              <span class="label">Asignados:</span>
+              <span *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
+            </div>
+          </div>
         </div>
 
         <div class="acciones" *ngIf="tarea.estado !== 'FINALIZADO'">
           <button class="btn-primary">
-                Finalizar tarea
-            </button>
+            Finalizar tarea
+          </button>
           <button class="btn-secondary" (click)="editar.emit()">Editar</button>
         </div>
 
