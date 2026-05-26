@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { TAREAS_MOCK } from '../tareas-mock/tareas-mock';
 
-import { TareaCard } from '../tarea-card/tarea-card';
-import { ModalTarea } from '../modal-tarea/modal-tarea';
-import { ModalDetalle } from '../modal-detalle/modal-detalle';
+import { ModalCrearEditarTarea } from '../modal-crear-editar-tarea/modal-crear-editar-tarea';
+import { CardTareaMobile } from '../card-tarea-mobile/card-tarea-mobile';
 import { Header } from './../../../../shared/header/header';
+import { ModalDetalle } from '../modal-detalle/modal-detalle';
+
 @Component({
   selector: 'app-mantenimiento-admin',
   standalone: true,
-  imports: [CommonModule, TareaCard, ModalTarea, ModalDetalle, Header],
+  imports: [CommonModule, ModalCrearEditarTarea, CardTareaMobile, Header, ModalDetalle],
   templateUrl: './mantenimiento-admin.html',
   styleUrl: './mantenimiento-admin.css',
 })
@@ -45,10 +46,10 @@ export class MantenimientoAdmin {
 
     this.mostrarModal = true;
   }
-  descargarPdf(){
+  descargarPdf() {
     // Aquí iría la lógica para generar y descargar el PDF
     console.log('Descargando PDF con las tareas...');
-    
+
   }
 
   abrirDetalle(tarea: any) {

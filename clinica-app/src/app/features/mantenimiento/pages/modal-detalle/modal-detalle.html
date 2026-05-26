@@ -5,7 +5,7 @@
         <div class="header">
 
             <h2>
-                Aire acondicionado {{ tarea.tipoRequiriemiento }}
+                {{ tarea.titulo }}{{ tarea.tipoRequerimiento }}
             </h2>
 
             <button (click)="cerrar.emit()">
@@ -22,40 +22,23 @@
 
             <div class="fila">
 
-                <strong>Creación:</strong>
+                <strong>Creador:</strong>
 
                 <span>
-                    {{ tarea.fechaCreacion }}
+                    {{ tarea.creador }}
                 </span>
 
             </div>
 
-            <div class="fila">
-
-                <strong>Sector:</strong>
-
-                <span>
-                    {{ tarea?.sector }}
-                </span>
-
-            </div>
+           
+          
 
             <div class="fila">
 
-                <strong>Prioridad:</strong>
+                <strong>Tiempo de demora:</strong>
 
                 <span>
-                    {{ tarea?.prioridad }}
-                </span>
-
-            </div>
-
-            <div class="fila">
-
-                <strong>Fecha límite:</strong>
-
-                <span>
-                    {{ tarea?.fechaLimite }}
+                    0 Días{{ tarea?.fechaLimite - tarea?.fechaCreacion | date:'short' }}
                 </span>
 
             </div>

@@ -6,21 +6,25 @@ import { Estado } from "../enums/Estado";
 export interface Tarea {
     id: number;
 
-    titulo: string;
-
-    descripcion: string;
-
-    estado: string;
-
-    sector: string;
-
-    prioridad: string;
+    tipoRequerimiento: string;
 
     fechaCreacion: string;
 
     fechaLimite: string;
 
-    observaciones?: string;
+    estado: string;
+
+    creador: string;
 
     asignados: string[];
+
+    descripcion: string;
+
+    local: string;
+
+    sector: string;
+
+    prioridad: string;
+
+
 }

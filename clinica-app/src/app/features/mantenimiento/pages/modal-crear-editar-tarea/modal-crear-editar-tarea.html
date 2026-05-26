@@ -16,7 +16,7 @@
 
         <div class="contenido">
 
-                <label>Local solicitante</label>
+            <label>Local solicitante</label>
 
             <select [(ngModel)]="tarea.sector">
 
@@ -28,7 +28,7 @@
 
             </select>
 
-                <label>Sector</label>
+            <label>Sector</label>
 
             <select [(ngModel)]="tarea.sector">
 
@@ -39,8 +39,8 @@
                 <option>con3</option>
 
             </select>
-                <label>Tipo de requerimiento</label>
-                        <select [(ngModel)]="tarea.tipoRequiriemiento">
+            <label>Tipo de requerimiento</label>
+            <select [(ngModel)]="tarea.tipoRequiriemiento">
 
                 <option>Pintureria</option>
 
@@ -53,12 +53,10 @@
 
             <label>Descripción</label>
 
-    <textarea
-  [(ngModel)]="tarea.descripcion"
-  maxlength="200">
+            <textarea [(ngModel)]="tarea.descripcion" maxlength="200">
 </textarea>
 
-<p>{{ tarea.descripcion.length || 0 }}/200</p>
+            <p>{{ tarea.descripcion.length || 0 }}/200</p>
 
 
             <label>Prioridad</label>
@@ -77,18 +75,10 @@
 
             <div class="empleados-grid">
 
-                <div
-                    class="empleado-item"
-                    *ngFor="let empleado of empleadosDisponibles"
-                >
+                <div class="empleado-item" *ngFor="let empleado of empleadosDisponibles">
 
-                    <input
-                        type="checkbox"
-
-                        [checked]="tarea.empleados.includes(empleado)"
-
-                        (change)="toggleEmpleado(empleado)"
-                    >
+                    <input type="checkbox" [checked]="tarea.empleados.includes(empleado)"
+                        (change)="toggleEmpleado(empleado)">
 
                     <span>
                         {{ empleado }}
@@ -100,26 +90,17 @@
 
             <label>Fecha estimada a finalizar</label>
 
-            <input
-                type="date"
-                [(ngModel)]="tarea.fechaLimite"
-            >
+            <input type="date" [(ngModel)]="tarea.fechaLimite">
 
         </div>
 
         <div class="acciones">
 
-            <button
-                class="btn-secondary"
-                (click)="cerrar.emit()"
-            >
+            <button class="btn-secondary" (click)="cerrar.emit()">
                 Cancelar
             </button>
 
-            <button
-                class="btn-primary"
-                (click)="guardar()"
-            >
+            <button class="btn-primary" (click)="guardar()">
                 Guardar
             </button>
 

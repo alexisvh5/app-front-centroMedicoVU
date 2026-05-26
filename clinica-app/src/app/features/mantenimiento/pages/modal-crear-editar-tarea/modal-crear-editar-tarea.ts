@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-modal-tarea',
+  selector: 'app-modal-crear-editar-tarea',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './modal-tarea.html',
-  styleUrl: './modal-tarea.css',
+  templateUrl: './modal-crear-editar-tarea.html',
+  styleUrl: './modal-crear-editar-tarea.css',
 })
-export class ModalTarea {
+export class ModalCrearEditarTarea {
 
   @Input() visible = false;
 
@@ -19,7 +19,7 @@ export class ModalTarea {
 
     titulo: '',
 
-  descripcion: '',  
+    descripcion: '',
 
     sector: '',
 

@@ -30,9 +30,10 @@
         <table class="tabla-tareas">
             <thead>
                 <tr>
-                    <th>Título</th>
+                    <th>Requerimiento</th>
                     <th>Estado</th>
                     <th>Prioridad</th>
+                    <th>Local</th>
                     <th>Sector</th>
                     <th>Creación</th>
                     <th>Objetivo</th>
@@ -42,7 +43,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let tarea of tareasActivas; let i = index" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
-                    <td class="td-titulo">{{ tarea.titulo }}</td>
+                    <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
                         <span class="estado"
                             [class.pendiente]="tarea.estado === 'PENDIENTE'"
@@ -59,6 +60,7 @@
                             {{ tarea.prioridad }}
                         </span>
                     </td>
+                    <td>{{ tarea.local }}</td>
                     <td>{{ tarea.sector }}</td>
                     <td>{{ tarea.fechaCreacion }}</td>
                     <td>{{ tarea.fechaLimite }}</td>
@@ -81,9 +83,9 @@
 
     <!-- ACTIVAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'activas'">
-        <app-tarea-card *ngFor="let tarea of tareasActivas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
+        <app-card-tarea-mobile *ngFor="let tarea of tareasActivas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
             (editar)="abrirEditar(tarea)">
-        </app-tarea-card>
+        </app-card-tarea-mobile>
         <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
     </div>
 
@@ -92,9 +94,10 @@
         <table class="tabla-tareas">
             <thead>
                 <tr>
-                    <th>Título</th>
+                    <th>Requerimiento</th>
                     <th>Estado</th>
                     <th>Prioridad</th>
+                    <th>Local</th>
                     <th>Sector</th>
                     <th>Creación</th>
                     <th>Objetivo</th>
@@ -104,7 +107,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let tarea of tareasFinalizadas; let i = index">
-                    <td class="td-titulo">{{ tarea.titulo }}</td>
+                    <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
                         <span class="estado"
                             [class.pendiente]="tarea.estado === 'PENDIENTE'"
@@ -121,6 +124,7 @@
                             {{ tarea.prioridad }}
                         </span>
                     </td>
+                    <td>{{ tarea.local }}</td>
                     <td>{{ tarea.sector }}</td>
                     <td>{{ tarea.fechaCreacion }}</td>
                     <td>{{ tarea.fechaLimite }}</td>
@@ -143,17 +147,16 @@
 
     <!-- FINALIZADAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'finalizadas'">
-        <app-tarea-card *ngFor="let tarea of tareasFinalizadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
+        <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
             (editar)="abrirEditar(tarea)">
-        </app-tarea-card>
+        </app-card-tarea-mobile>
         <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
     </div>
-
 </div>
 
-<app-modal-tarea [visible]="mostrarModal" [modo]="modoModal" [tarea]="tareaSeleccionada"
+<app-modal-crear-editar-tarea [visible]="mostrarModal" [modo]="modoModal" [tarea]="tareaSeleccionada"
     (cerrar)="mostrarModal = false">
-</app-modal-tarea>
+</app-modal-crear-editar-tarea>
 
 <app-modal-detalle [visible]="mostrarDetalle" [tarea]="tareaSeleccionada" (cerrar)="mostrarDetalle = false">
 </app-modal-detalle>

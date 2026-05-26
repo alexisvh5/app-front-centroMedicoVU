@@ -3,13 +3,13 @@ import { Tarea } from "../../../../interfaces/tarea.interface";
 import { CommonModule } from '@angular/common';
 import { Output, EventEmitter } from '@angular/core';
 @Component({
-  selector: 'app-tarea-card',
+  selector: 'app-card-tarea-mobile',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './tarea-card.html',
-  styleUrl: './tarea-card.css',
+  templateUrl: './card-tarea-mobile.html',
+  styleUrl: './card-tarea-mobile.css',
 })
-export class TareaCard {
+export class CardTareaMobile {
   @Input() tarea: any;
 
   @Output() verDetalle = new EventEmitter();

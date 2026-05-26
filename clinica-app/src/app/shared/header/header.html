@@ -25,11 +25,16 @@
 
   </div>
 
-  <button
-    class="logout-btn"
-    routerLink="/login"
-  >
-    Cerrar sesión
-  </button>
+  <div class="user-menu">
+    <button class="user-btn" (click)="toggleMenu()">
+      <span class="user-name">Elías</span>
+      <span class="chevron" [class.open]="menuOpen">▼</span>
+    </button>
+    <div class="dropdown" *ngIf="menuOpen">
+      <button class="dropdown-item" routerLink="/login" (click)="menuOpen = false">
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
 
 </header>

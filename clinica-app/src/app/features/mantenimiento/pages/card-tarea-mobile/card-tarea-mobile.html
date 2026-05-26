@@ -3,7 +3,7 @@
   <!-- HEADER MOBILE (solo visible en mobile, clickeable) -->
   <div class="card-header" (click)="isOpen = !isOpen">
     <div class="header-main">
-      <div class="titulo">Aire acondicionado {{ tarea.tipoRequerimiento }}</div>
+      <div class="titulo">{{ tarea.titulo }}{{ tarea.tipoRequerimiento }}</div>
       <div class="asignados-mini">
         <span class="chip-mini" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
       </div>
@@ -22,10 +22,10 @@
     <div class="card-body-inner">
       <div class="card-body-content">
 
-        <!-- Estado visible solo en desktop (en el body) -->
+        <!-- Lo visible a primera vista -->
         <div class="top">
           <div class="titulo-container">
-            <h3>Aire acondicionado {{ tarea.tipoRequerimiento }}</h3>
+            <h3>{{ tarea.tipoRequerimiento }}</h3>
           </div>
           <span class="estado desktop-estado"
             [class.pendiente]="tarea.estado === 'PENDIENTE'"
