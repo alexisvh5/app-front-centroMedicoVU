@@ -53,7 +53,7 @@
 
         </div>
 
-        <div class="acciones">
+        <div *ngIf="tarea?.estado !== 'FINALIZADO'" class="acciones">
 
             <button class="btn-primary">
                 Finalizar tarea
