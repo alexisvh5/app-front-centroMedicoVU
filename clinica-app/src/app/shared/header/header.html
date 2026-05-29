@@ -31,7 +31,7 @@
       <span class="chevron" [class.open]="menuOpen">▼</span>
     </button>
     <div class="dropdown" *ngIf="menuOpen">
-      <button class="dropdown-item" routerLink="/login" (click)="menuOpen = false">
+      <button class="dropdown-item" routerLink="/login" (click)="cerrarSesion()">
         Cerrar sesión
       </button>
     </div>
