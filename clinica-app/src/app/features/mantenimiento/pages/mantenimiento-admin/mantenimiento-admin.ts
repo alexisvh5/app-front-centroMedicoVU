@@ -31,6 +31,9 @@ export class MantenimientoAdmin {
   filtroFechaDesde = '';
   filtroFechaHasta = '';
 
+  readonly tamanoPagina = 8;
+  paginaActual = 1;
+
   get localesUnicos(): string[] {
     return [...new Set(this.tareas.map(t => t.local))].sort();
   }
@@ -42,6 +45,34 @@ export class MantenimientoAdmin {
   get hayFiltrosActivos(): boolean {
     return !!(this.filtroLocal || this.filtroSector || this.filtroRequerimiento ||
               this.filtroFechaDesde || this.filtroFechaHasta);
+  }
+
+  get totalPaginas(): number {
+    const total = this.vistaActual === 'activas'
+      ? this.tareasActivas.length
+      : this.tareasFinalizadas.length;
+    return Math.max(1, Math.ceil(total / this.tamanoPagina));
+  }
+
+  get paginas(): number[] {
+    const ventana = 5;
+    let inicio = Math.max(1, this.paginaActual - Math.floor(ventana / 2));
+    let fin = inicio + ventana - 1;
+    if (fin > this.totalPaginas) {
+      fin = this.totalPaginas;
+      inicio = Math.max(1, fin - ventana + 1);
+    }
+    return Array.from({ length: fin - inicio + 1 }, (_, i) => inicio + i);
+  }
+
+  get tareasActivasPaginadas() {
+    const inicio = (this.paginaActual - 1) * this.tamanoPagina;
+    return this.tareasActivas.slice(inicio, inicio + this.tamanoPagina);
+  }
+
+  get tareasFinalizadasPaginadas() {
+    const inicio = (this.paginaActual - 1) * this.tamanoPagina;
+    return this.tareasFinalizadas.slice(inicio, inicio + this.tamanoPagina);
   }
 
   private aplicarFiltros(lista: any[]): any[] {
@@ -62,6 +93,16 @@ export class MantenimientoAdmin {
     this.filtroRequerimiento = '';
     this.filtroFechaDesde = '';
     this.filtroFechaHasta = '';
+    this.paginaActual = 1;
+  }
+
+  cambiarTab(vista: 'activas' | 'finalizadas') {
+    this.vistaActual = vista;
+    this.paginaActual = 1;
+  }
+
+  irAPagina(n: number) {
+    this.paginaActual = n;
   }
 
   abrirModal() {

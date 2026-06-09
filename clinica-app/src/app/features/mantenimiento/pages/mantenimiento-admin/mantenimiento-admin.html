@@ -15,11 +15,11 @@
 
     <!-- TABS -->
     <div class="tabs">
-        <button class="tab" [class.activo]="vistaActual === 'activas'" (click)="vistaActual = 'activas'">
+        <button class="tab" [class.activo]="vistaActual === 'activas'" (click)="cambiarTab('activas')">
             Activas
             <span class="badge">{{ tareasActivas.length }}</span>
         </button>
-        <button class="tab" [class.activo]="vistaActual === 'finalizadas'" (click)="vistaActual = 'finalizadas'">
+        <button class="tab" [class.activo]="vistaActual === 'finalizadas'" (click)="cambiarTab('finalizadas')">
             Finalizadas
             <span class="badge finalizadas">{{ tareasFinalizadas.length }}</span>
         </button>
@@ -30,29 +30,29 @@
         <div class="filtros-campos">
             <div class="filtro-grupo">
                 <label>Requerimiento</label>
-                <input type="text" [(ngModel)]="filtroRequerimiento" placeholder="Buscar..." class="filtro-input" />
+                <input type="text" [(ngModel)]="filtroRequerimiento" (ngModelChange)="paginaActual = 1" placeholder="Buscar..." class="filtro-input" />
             </div>
             <div class="filtro-grupo">
                 <label>Local</label>
-                <select [(ngModel)]="filtroLocal" class="filtro-select">
+                <select [(ngModel)]="filtroLocal" (ngModelChange)="paginaActual = 1" class="filtro-select">
                     <option value="">Todos</option>
                     <option *ngFor="let local of localesUnicos" [value]="local">{{ local }}</option>
                 </select>
             </div>
             <div class="filtro-grupo">
                 <label>Sector</label>
-                <select [(ngModel)]="filtroSector" class="filtro-select">
+                <select [(ngModel)]="filtroSector" (ngModelChange)="paginaActual = 1" class="filtro-select">
                     <option value="">Todos</option>
                     <option *ngFor="let sector of sectoresUnicos" [value]="sector">{{ sector }}</option>
                 </select>
             </div>
             <div class="filtro-grupo">
                 <label>Fecha desde</label>
-                <input type="date" [(ngModel)]="filtroFechaDesde" class="filtro-input" />
+                <input type="date" [(ngModel)]="filtroFechaDesde" (ngModelChange)="paginaActual = 1" class="filtro-input" />
             </div>
             <div class="filtro-grupo">
                 <label>Fecha hasta</label>
-                <input type="date" [(ngModel)]="filtroFechaHasta" class="filtro-input" />
+                <input type="date" [(ngModel)]="filtroFechaHasta" (ngModelChange)="paginaActual = 1" class="filtro-input" />
             </div>
         </div>
         <button class="btn-limpiar" *ngIf="hayFiltrosActivos" (click)="limpiarFiltros()">
@@ -77,7 +77,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let tarea of tareasActivas; let i = index" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
+                <tr *ngFor="let tarea of tareasActivasPaginadas" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
                     <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
                         <span class="estado"
@@ -110,7 +110,6 @@
                         </div>
                     </td>
                 </tr>
-
             </tbody>
         </table>
         <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
@@ -118,7 +117,7 @@
 
     <!-- ACTIVAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'activas'">
-        <app-card-tarea-mobile *ngFor="let tarea of tareasActivas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
+        <app-card-tarea-mobile *ngFor="let tarea of tareasActivasPaginadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
             (editar)="abrirEditar(tarea)">
         </app-card-tarea-mobile>
         <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
@@ -141,7 +140,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let tarea of tareasFinalizadas; let i = index">
+                <tr *ngFor="let tarea of tareasFinalizadasPaginadas">
                     <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
                         <span class="estado"
@@ -174,7 +173,6 @@
                         </div>
                     </td>
                 </tr>
-
             </tbody>
         </table>
         <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
@@ -182,11 +180,29 @@
 
     <!-- FINALIZADAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'finalizadas'">
-        <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
+        <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadasPaginadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
             (editar)="abrirEditar(tarea)">
         </app-card-tarea-mobile>
         <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
     </div>
+
+    <!-- PAGINACIÓN -->
+    <div class="paginacion" *ngIf="totalPaginas > 1">
+        <button class="pag-btn pag-nav" (click)="irAPagina(paginaActual - 1)" [disabled]="paginaActual === 1">
+            ‹ Anterior
+        </button>
+        <button class="pag-btn"
+            *ngFor="let p of paginas"
+            [class.activo]="p === paginaActual"
+            (click)="irAPagina(p)">
+            {{ p }}
+        </button>
+        <button class="pag-btn pag-nav" (click)="irAPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas">
+            Siguiente ›
+        </button>
+        <span class="pag-info">Página {{ paginaActual }} de {{ totalPaginas }}</span>
+    </div>
+
 </div>
 
 <app-modal-crear-editar-tarea [visible]="mostrarModal" [modo]="modoModal" [tarea]="tareaSeleccionada"
