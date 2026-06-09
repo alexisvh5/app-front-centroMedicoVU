@@ -25,6 +25,41 @@
         </button>
     </div>
 
+    <!-- FILTROS -->
+    <div class="filtros-bar">
+        <div class="filtros-campos">
+            <div class="filtro-grupo">
+                <label>Requerimiento</label>
+                <input type="text" [(ngModel)]="filtroRequerimiento" placeholder="Buscar..." class="filtro-input" />
+            </div>
+            <div class="filtro-grupo">
+                <label>Local</label>
+                <select [(ngModel)]="filtroLocal" class="filtro-select">
+                    <option value="">Todos</option>
+                    <option *ngFor="let local of localesUnicos" [value]="local">{{ local }}</option>
+                </select>
+            </div>
+            <div class="filtro-grupo">
+                <label>Sector</label>
+                <select [(ngModel)]="filtroSector" class="filtro-select">
+                    <option value="">Todos</option>
+                    <option *ngFor="let sector of sectoresUnicos" [value]="sector">{{ sector }}</option>
+                </select>
+            </div>
+            <div class="filtro-grupo">
+                <label>Fecha desde</label>
+                <input type="date" [(ngModel)]="filtroFechaDesde" class="filtro-input" />
+            </div>
+            <div class="filtro-grupo">
+                <label>Fecha hasta</label>
+                <input type="date" [(ngModel)]="filtroFechaHasta" class="filtro-input" />
+            </div>
+        </div>
+        <button class="btn-limpiar" *ngIf="hayFiltrosActivos" (click)="limpiarFiltros()">
+            ✕ Limpiar filtros
+        </button>
+    </div>
+
     <!-- ACTIVAS - Desktop table -->
     <div class="tabla-wrapper desktop-only" *ngIf="vistaActual === 'activas'">
         <table class="tabla-tareas">
