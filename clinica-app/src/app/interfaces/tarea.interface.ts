@@ -26,5 +26,6 @@ export interface Tarea {
 
     prioridad: string;
 
+    observacion: string;
 
 }
