@@ -15,6 +15,10 @@ export class Header {
   private router = inject(Router);
   menuOpen = false;
 
+  get nombre(): string {
+    return this.authService.getNombre();
+  }
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }

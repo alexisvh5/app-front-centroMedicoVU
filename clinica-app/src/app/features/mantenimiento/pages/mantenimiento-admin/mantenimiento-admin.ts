@@ -160,6 +160,7 @@ export class MantenimientoAdmin implements OnInit {
   cambiarTab(vista: 'activas' | 'finalizadas') {
     this.vistaActual = vista;
     this.paginaActual = 1;
+    this.cdr.detectChanges();
   }
 
   irAPagina(n: number) {

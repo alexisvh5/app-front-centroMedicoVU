@@ -27,7 +27,7 @@
 
   <div class="user-menu">
     <button class="user-btn" (click)="toggleMenu()">
-      <span class="user-name">Elías</span>
+      <span class="user-name">{{ nombre }}</span>
       <span class="chevron" [class.open]="menuOpen">▼</span>
     </button>
     <div class="dropdown" *ngIf="menuOpen">
