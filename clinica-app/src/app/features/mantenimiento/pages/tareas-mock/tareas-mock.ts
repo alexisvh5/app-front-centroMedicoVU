@@ -12,7 +12,8 @@ export const TAREAS_MOCK: Tarea[] = [
         creador: 'Ana',prioridad: 'ALTA',
         fechaCreacion: '2026-05-20',
         fechaLimite: '2026-05-25',
-        asignados: ['Jorge', 'Luisina']
+        asignados: ['Jorge', 'Luisina'],
+        observacion: ''
     },
 
     {
@@ -26,7 +27,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'ALTA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 22,
         tipoRequerimiento: 'Cambiar luminaria',
@@ -37,7 +38,7 @@ export const TAREAS_MOCK: Tarea[] = [
         creador: 'Ana',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 221,
         tipoRequerimiento: 'Cambiar luminaria',
@@ -48,7 +49,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'ALTA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     },
     {
         id: 3,
@@ -61,7 +62,7 @@ export const TAREAS_MOCK: Tarea[] = [
         creador: 'Veronica',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 4,
         tipoRequerimiento: 'Arreglar ventilador',
@@ -73,7 +74,7 @@ export const TAREAS_MOCK: Tarea[] = [
         creador: 'Veronica',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 43,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -84,7 +85,7 @@ export const TAREAS_MOCK: Tarea[] = [
        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -96,7 +97,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }
     , {
         id: 224,
@@ -109,7 +110,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -120,7 +121,7 @@ export const TAREAS_MOCK: Tarea[] = [
        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     },{
         id: 43,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -131,7 +132,7 @@ export const TAREAS_MOCK: Tarea[] = [
        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -143,7 +144,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }
     , {
         id: 224,
@@ -156,7 +157,7 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -167,7 +168,7 @@ export const TAREAS_MOCK: Tarea[] = [
        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],observacion: ''
     },{
         id: 43,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -178,7 +179,8 @@ export const TAREAS_MOCK: Tarea[] = [
        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ''
     }, {
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -190,7 +192,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -203,7 +206,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -211,10 +215,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -226,7 +231,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -239,7 +245,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -247,10 +254,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -262,7 +270,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -275,7 +284,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -283,10 +293,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -298,7 +309,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -311,7 +323,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -319,10 +332,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -334,7 +348,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -347,7 +362,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -355,10 +371,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -370,7 +387,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -383,7 +401,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -391,10 +410,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -406,7 +426,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -419,7 +440,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -427,10 +449,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -442,7 +465,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -455,7 +479,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -463,10 +488,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -478,7 +504,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -491,7 +518,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -499,10 +527,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -514,7 +543,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -527,7 +557,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -535,10 +566,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -550,7 +582,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -563,7 +596,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -571,22 +605,24 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },
     {
-      id: 1,
+        id: 1,
         tipoRequerimiento: 'Arreglar aire acondicionado',
         descripcion: 'El aire del consultorio 4 pierde agua.',
         estado: 'PENDIENTE',
         local: '852',
         sector: 'Pasillo',
-        creador: 'Ana',prioridad: 'ALTA',
+        creador: 'Ana', prioridad: 'ALTA',
         fechaCreacion: '2026-05-20',
         fechaLimite: '2026-05-25',
-        asignados: ['Jorge', 'Luisina']
+        asignados: ['Jorge', 'Luisina'],
+        observacion: ""
     },
     {
         id: 2,
@@ -599,7 +635,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'ALTA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 22,
         tipoRequerimiento: 'Cambiar luminaria',
@@ -610,7 +647,8 @@ export const TAREAS_MOCK: Tarea[] = [
         creador: 'Ana',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 221,
         tipoRequerimiento: 'Cambiar luminaria',
@@ -621,7 +659,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'ALTA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },
     {
         id: 3,
@@ -634,7 +673,8 @@ export const TAREAS_MOCK: Tarea[] = [
         creador: 'Veronica',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 4,
         tipoRequerimiento: 'Arreglar ventilador',
@@ -646,7 +686,8 @@ export const TAREAS_MOCK: Tarea[] = [
         creador: 'Veronica',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 43,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -654,10 +695,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '853',
         sector: 'Consultorio 1',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -669,7 +711,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -682,7 +725,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -690,10 +734,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 43,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -701,10 +746,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '853',
         sector: 'Consultorio 1',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -716,7 +762,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -729,7 +776,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -737,10 +785,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 43,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -748,10 +797,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '853',
         sector: 'Consultorio 1',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -763,7 +813,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -776,7 +827,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -784,10 +836,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -799,7 +852,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -812,7 +866,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -820,10 +875,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -835,7 +891,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -848,7 +905,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -856,10 +914,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -871,7 +930,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -884,7 +944,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -892,10 +953,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -907,7 +969,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -920,7 +983,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -928,10 +992,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -943,7 +1008,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -956,7 +1022,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -964,10 +1031,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -979,7 +1047,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -992,7 +1061,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -1000,10 +1070,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -1015,7 +1086,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -1028,7 +1100,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -1036,10 +1109,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -1051,7 +1125,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -1064,7 +1139,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -1072,10 +1148,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -1087,7 +1164,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -1100,7 +1178,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -1108,10 +1187,11 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     },{
         id: 41,
         tipoRequerimiento: 'Cambiar Lampara',
@@ -1123,7 +1203,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
     , {
         id: 224,
@@ -1136,7 +1217,8 @@ export const TAREAS_MOCK: Tarea[] = [
         prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }, {
         id: 14,
         tipoRequerimiento: 'Cambiar canilla',
@@ -1144,9 +1226,10 @@ export const TAREAS_MOCK: Tarea[] = [
         estado: 'FINALIZADO',
         local: '831',
         sector: 'Pasillo',
-       creador: 'Ana', prioridad: 'MEDIA',
+        creador: 'Ana', prioridad: 'MEDIA',
         fechaCreacion: '2026-05-18',
         fechaLimite: '2026-05-22',
-        asignados: ['Carlos']
+        asignados: ['Carlos'],
+        observacion: ""
     }
 ];

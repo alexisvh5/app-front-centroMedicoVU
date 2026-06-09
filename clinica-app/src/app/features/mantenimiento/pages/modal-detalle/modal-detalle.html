@@ -43,7 +43,9 @@
 
             </div>
 
+            <!-- TAREA NO FINALIZADA -->
             <div *ngIf="tarea?.estado !== 'FINALIZADO'" class="observacion-container">
+
                 <label for="observacion">
                     <strong>Observación</strong>
                 </label>
@@ -55,6 +57,18 @@
                 <small>
                     {{ observacion.length }}/{{ maxCaracteres }}
                 </small>
+
+            </div>
+
+            <!-- TAREA FINALIZADA -->
+            <div *ngIf="tarea?.estado === 'FINALIZADO'" class="fila">
+
+                <strong>Observación:</strong>
+
+                <span>
+                    {{ tarea?.observacion || '-' }}
+                </span>
+
             </div>
         </div>
         <div *ngIf="tarea?.estado !== 'FINALIZADO'" class="acciones">
