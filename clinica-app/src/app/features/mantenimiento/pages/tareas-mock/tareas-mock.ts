@@ -1248,3 +1248,4 @@ export const TAREAS_MOCK: Tarea[] = [
 //         observacion: ""
 //     }
 // ];
+  

@@ -50,6 +50,7 @@ export class MantenimientoAdmin implements OnInit {
     this.tareaService.tareas$.subscribe({
       next: (tareas) => {
         this.tareas = tareas;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Error al cargar tareas:', err);
