@@ -2,8 +2,15 @@
 
     <div class="login-card">
 
+        <!-- LOGO -->
+
         <div class="text-center mb-4">
-            <img src="assets/img/logo.png" alt="Urkupina" class="logo">
+
+            <img
+                src="assets/img/logo.png"
+                alt="Centro Médico Urkupina"
+                class="logo"
+            >
 
             <h2 class="titulo mt-3">
                 Centro Médico Urkupina
@@ -12,13 +19,23 @@
             <p class="subtitulo">
                 Sistema de gestión de sectores
             </p>
+
         </div>
+
+        <!-- MENSAJE EXITO -->
 
         <div *ngIf="mensajeExito" class="alert alert-success">
+
             {{ mensajeExito }}
+
         </div>
 
-        <form [formGroup]="loginForm" (ngSubmit)="loguearse()">
+        <!-- FORM -->
+
+        <form
+            [formGroup]="loginForm"
+            (ngSubmit)="loguearse()"
+        >
 
             <!-- DNI -->
 
@@ -29,17 +46,29 @@
                 </label>
 
                 <input
-                    type="number"
+                    type="text"
                     class="form-control input-custom"
                     formControlName="dni"
-                    placeholder="Ingresá tu DNI">
+                    placeholder="Ingresá tu DNI"
+                />
 
                 <small
                     class="text-danger"
-                    *ngIf="(loginForm.controls['dni'].touched || submitted)
-                    && loginForm.controls['dni'].invalid">
+                    *ngIf="(loginForm.controls.dni.touched || submitted)
+                    && loginForm.controls.dni.invalid"
+                >
 
-                    El DNI es obligatorio
+                    <span *ngIf="loginForm.controls.dni.errors?.['required']">
+
+                        El DNI es obligatorio
+
+                    </span>
+
+                    <span *ngIf="loginForm.controls.dni.errors?.['pattern']">
+
+                        El DNI debe tener 7 u 8 números
+
+                    </span>
 
                 </small>
 
@@ -59,12 +88,14 @@
                         [type]="mostrarPassword ? 'text' : 'password'"
                         class="form-control input-custom"
                         formControlName="password"
-                        placeholder="Ingresá tu contraseña">
+                        placeholder="Ingresá tu contraseña"
+                    >
 
                     <button
                         type="button"
                         class="toggle-password"
-                        (click)="togglePassword()">
+                        (click)="togglePassword()"
+                    >
 
                         {{ mostrarPassword ? 'Ocultar' : 'Ver' }}
 
@@ -74,30 +105,47 @@
 
                 <small
                     class="text-danger"
-                    *ngIf="(loginForm.controls['password'].touched || submitted)
-                    && loginForm.controls['password'].invalid">
+                    *ngIf="(loginForm.controls.password.touched || submitted)
+                    && loginForm.controls.password.invalid"
+                >
 
-                    La contraseña es obligatoria
+                    <span *ngIf="loginForm.controls.password.errors?.['required']">
+
+                        La contraseña es obligatoria
+
+                    </span>
+
+                    <span *ngIf="loginForm.controls.password.errors?.['minlength']">
+
+                        Debe tener al menos 2 caracteres
+
+                    </span>
 
                 </small>
 
             </div>
 
-            <!-- BOTON -->
+            <!-- BOTON LOGIN -->
 
             <button
                 type="submit"
                 class="btn boton-login w-100"
-                (click)="loguearse()"
-                [disabled]="loading">
+                [disabled]="loading"
+            >
 
                 {{ loading ? 'Ingresando...' : 'Iniciar sesión' }}
+
             </button>
 
             <!-- ERROR -->
 
-            <div *ngIf="mensajeError" class="alert alert-danger mt-3">
+            <div
+                *ngIf="mensajeError"
+                class="alert alert-danger mt-3"
+            >
+
                 {{ mensajeError }}
+
             </div>
 
         </form>
