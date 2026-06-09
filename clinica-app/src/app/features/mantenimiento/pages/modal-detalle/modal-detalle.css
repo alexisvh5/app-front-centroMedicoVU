@@ -108,25 +108,61 @@
 }
 
 .acciones {
-
     display: flex;
-
     justify-content: flex-end;
+    gap: .75rem;
+    margin-top: .5rem;
 }
 
 .btn-primary {
-
     border: none;
-
     background: var(--color-primary);
-
     color: white;
-
-    padding: .9rem 1.5rem;
-
+    padding: .65rem 1.1rem;
     border-radius: 999px;
-
-    font-weight: 700;
-
+    font-weight: 600;
+    font-size: .9rem;
     cursor: pointer;
+    transition: .2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.btn-cancelar {
+    border: none;
+    background: rgb(199, 0, 0);
+    color: white;
+    padding: .65rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-cancelar:hover {
+    transform: translateY(-1px);
+}
+
+.observacion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0rem;
+}
+
+.observacion-container textarea {
+    min-height: 80px;
+    resize: none;
+    padding: 0.75rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.observacion-container small {
+    text-align: right;
+    color: #666;
 }

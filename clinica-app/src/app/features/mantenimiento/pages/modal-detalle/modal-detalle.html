@@ -30,8 +30,8 @@
 
             </div>
 
-           
-          
+
+
 
             <div class="fila">
 
@@ -43,17 +43,25 @@
 
             </div>
 
-            <div class="empleados">
+            <div *ngIf="tarea?.estado !== 'FINALIZADO'" class="observacion-container">
+                <label for="observacion">
+                    <strong>Observación</strong>
+                </label>
 
-                <span *ngFor="let emp of tarea?.empleados">
-                    {{ emp }}
-                </span>
+                <textarea id="observacion" [(ngModel)]="observacion" [maxlength]="maxCaracteres"
+                    placeholder="Ingrese una observación breve...">
+                </textarea>
 
+                <small>
+                    {{ observacion.length }}/{{ maxCaracteres }}
+                </small>
             </div>
-
         </div>
-
         <div *ngIf="tarea?.estado !== 'FINALIZADO'" class="acciones">
+
+            <button class="btn-cancelar">
+                Cancelar tarea
+            </button>
 
             <button class="btn-primary">
                 Finalizar tarea
