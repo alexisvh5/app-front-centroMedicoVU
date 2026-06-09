@@ -30,7 +30,8 @@
         <div class="filtros-campos">
             <div class="filtro-grupo">
                 <label>Requerimiento</label>
-                <input type="text" [(ngModel)]="filtroRequerimiento" (ngModelChange)="paginaActual = 1" placeholder="Buscar..." class="filtro-input" />
+                <input type="text" [(ngModel)]="filtroRequerimiento" (ngModelChange)="paginaActual = 1"
+                    placeholder="Buscar..." class="filtro-input" />
             </div>
             <div class="filtro-grupo">
                 <label>Local</label>
@@ -48,11 +49,13 @@
             </div>
             <div class="filtro-grupo">
                 <label>Fecha desde</label>
-                <input type="date" [(ngModel)]="filtroFechaDesde" (ngModelChange)="paginaActual = 1" class="filtro-input" />
+                <input type="date" [(ngModel)]="filtroFechaDesde" (ngModelChange)="paginaActual = 1"
+                    class="filtro-input" />
             </div>
             <div class="filtro-grupo">
                 <label>Fecha hasta</label>
-                <input type="date" [(ngModel)]="filtroFechaHasta" (ngModelChange)="paginaActual = 1" class="filtro-input" />
+                <input type="date" [(ngModel)]="filtroFechaHasta" (ngModelChange)="paginaActual = 1"
+                    class="filtro-input" />
             </div>
         </div>
         <button class="btn-limpiar" *ngIf="hayFiltrosActivos" (click)="limpiarFiltros()">
@@ -80,28 +83,31 @@
                 <tr *ngFor="let tarea of tareasActivasPaginadas" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
                     <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
-                        <span class="estado"
-                            [class.pendiente]="tarea.estado === 'PENDIENTE'"
+                        <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
                             [class.finalizado]="tarea.estado === 'FINALIZADO'"
                             [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
                             {{ tarea.estado }}
                         </span>
                     </td>
                     <td>
-                        <span class="prioridad"
-                            [class.alta]="tarea.prioridad === 'ALTA'"
-                            [class.media]="tarea.prioridad === 'MEDIA'"
-                            [class.baja]="tarea.prioridad === 'BAJA'">
+                        <span class="prioridad" [class.alta]="tarea.prioridad === 'ALTA'"
+                            [class.media]="tarea.prioridad === 'MEDIA'" [class.baja]="tarea.prioridad === 'BAJA'">
                             {{ tarea.prioridad }}
                         </span>
                     </td>
                     <td>{{ tarea.local }}</td>
                     <td>{{ tarea.sector }}</td>
-                    <td>{{ tarea.fechaCreacion }}</td>
-                    <td>{{ tarea.fechaLimite }}</td>
+                    <td>{{ tarea.fechaDeCreacion }}</td>
+                    <td>{{ tarea.fechaObjetivo }}</td>
                     <td>
-                        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
-                        <span class="sin-asignados" *ngIf="!tarea.asignados?.length">—</span>
+                        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados | keyvalue">
+                            {{ asignado.value }}
+                        </span>
+
+                        <span class="sin-asignados"
+                            *ngIf="!tarea.asignados || (tarea.asignados | keyvalue)?.length === 0">
+                            —
+                        </span>
                     </td>
                     <td class="td-acciones">
                         <div class="acciones-btns">
@@ -117,8 +123,8 @@
 
     <!-- ACTIVAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'activas'">
-        <app-card-tarea-mobile *ngFor="let tarea of tareasActivasPaginadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
-            (editar)="abrirEditar(tarea)">
+        <app-card-tarea-mobile *ngFor="let tarea of tareasActivasPaginadas" [tarea]="tarea"
+            (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)">
         </app-card-tarea-mobile>
         <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
     </div>
@@ -143,18 +149,15 @@
                 <tr *ngFor="let tarea of tareasFinalizadasPaginadas">
                     <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
-                        <span class="estado"
-                            [class.pendiente]="tarea.estado === 'PENDIENTE'"
+                        <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
                             [class.finalizado]="tarea.estado === 'FINALIZADO'"
                             [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
                             {{ tarea.estado }}
                         </span>
                     </td>
                     <td>
-                        <span class="prioridad"
-                            [class.alta]="tarea.prioridad === 'ALTA'"
-                            [class.media]="tarea.prioridad === 'MEDIA'"
-                            [class.baja]="tarea.prioridad === 'BAJA'">
+                        <span class="prioridad" [class.alta]="tarea.prioridad === 'ALTA'"
+                            [class.media]="tarea.prioridad === 'MEDIA'" [class.baja]="tarea.prioridad === 'BAJA'">
                             {{ tarea.prioridad }}
                         </span>
                     </td>
@@ -180,8 +183,8 @@
 
     <!-- FINALIZADAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'finalizadas'">
-        <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadasPaginadas" [tarea]="tarea" (verDetalle)="abrirDetalle(tarea)"
-            (editar)="abrirEditar(tarea)">
+        <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadasPaginadas" [tarea]="tarea"
+            (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)">
         </app-card-tarea-mobile>
         <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
     </div>
@@ -191,13 +194,11 @@
         <button class="pag-btn pag-nav" (click)="irAPagina(paginaActual - 1)" [disabled]="paginaActual === 1">
             ‹ Anterior
         </button>
-        <button class="pag-btn"
-            *ngFor="let p of paginas"
-            [class.activo]="p === paginaActual"
-            (click)="irAPagina(p)">
+        <button class="pag-btn" *ngFor="let p of paginas" [class.activo]="p === paginaActual" (click)="irAPagina(p)">
             {{ p }}
         </button>
-        <button class="pag-btn pag-nav" (click)="irAPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas">
+        <button class="pag-btn pag-nav" (click)="irAPagina(paginaActual + 1)"
+            [disabled]="paginaActual === totalPaginas">
             Siguiente ›
         </button>
         <span class="pag-info">Página {{ paginaActual }} de {{ totalPaginas }}</span>

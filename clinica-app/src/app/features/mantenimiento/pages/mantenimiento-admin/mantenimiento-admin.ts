@@ -1,24 +1,34 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { TAREAS_MOCK } from '../tareas-mock/tareas-mock';
 
 import { ModalCrearEditarTarea } from '../modal-crear-editar-tarea/modal-crear-editar-tarea';
 import { CardTareaMobile } from '../card-tarea-mobile/card-tarea-mobile';
 import { Header } from './../../../../shared/header/header';
 import { ModalDetalle } from '../modal-detalle/modal-detalle';
+import { TareaService } from '../../service/tarea-service';
 
 @Component({
   selector: 'app-mantenimiento-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalCrearEditarTarea, CardTareaMobile, Header, ModalDetalle],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ModalCrearEditarTarea,
+    CardTareaMobile,
+    Header,
+    ModalDetalle
+  ],
   templateUrl: './mantenimiento-admin.html',
   styleUrl: './mantenimiento-admin.css',
 })
-export class MantenimientoAdmin {
+export class MantenimientoAdmin implements OnInit {
 
-  tareas = TAREAS_MOCK;
+  private tareaService = inject(TareaService);
+  private cdr = inject(ChangeDetectorRef);
+
+  tareas: any[] = [];
+
   mostrarModal = false;
   mostrarDetalle = false;
   tareaSeleccionada: any = null;
@@ -34,6 +44,19 @@ export class MantenimientoAdmin {
   readonly tamanoPagina = 8;
   paginaActual = 1;
 
+  ngOnInit(): void {
+    this.tareaService.cargarTareas();
+
+    this.tareaService.tareas$.subscribe({
+      next: (tareas) => {
+        this.tareas = tareas;
+      },
+      error: (err) => {
+        console.error('Error al cargar tareas:', err);
+      }
+    });
+  }
+
   get localesUnicos(): string[] {
     return [...new Set(this.tareas.map(t => t.local))].sort();
   }
@@ -43,26 +66,43 @@ export class MantenimientoAdmin {
   }
 
   get hayFiltrosActivos(): boolean {
-    return !!(this.filtroLocal || this.filtroSector || this.filtroRequerimiento ||
-              this.filtroFechaDesde || this.filtroFechaHasta);
+    return !!(
+      this.filtroLocal ||
+      this.filtroSector ||
+      this.filtroRequerimiento ||
+      this.filtroFechaDesde ||
+      this.filtroFechaHasta
+    );
   }
 
   get totalPaginas(): number {
-    const total = this.vistaActual === 'activas'
-      ? this.tareasActivas.length
-      : this.tareasFinalizadas.length;
+    const total =
+      this.vistaActual === 'activas'
+        ? this.tareasActivas.length
+        : this.tareasFinalizadas.length;
+
     return Math.max(1, Math.ceil(total / this.tamanoPagina));
   }
 
   get paginas(): number[] {
     const ventana = 5;
-    let inicio = Math.max(1, this.paginaActual - Math.floor(ventana / 2));
+
+    let inicio = Math.max(
+      1,
+      this.paginaActual - Math.floor(ventana / 2)
+    );
+
     let fin = inicio + ventana - 1;
+
     if (fin > this.totalPaginas) {
       fin = this.totalPaginas;
       inicio = Math.max(1, fin - ventana + 1);
     }
-    return Array.from({ length: fin - inicio + 1 }, (_, i) => inicio + i);
+
+    return Array.from(
+      { length: fin - inicio + 1 },
+      (_, i) => inicio + i
+    );
   }
 
   get tareasActivasPaginadas() {
@@ -77,13 +117,33 @@ export class MantenimientoAdmin {
 
   private aplicarFiltros(lista: any[]): any[] {
     return lista.filter(t => {
-      const matchLocal = !this.filtroLocal || t.local === this.filtroLocal;
-      const matchSector = !this.filtroSector || t.sector === this.filtroSector;
-      const matchReq = !this.filtroRequerimiento ||
-        t.tipoRequerimiento.toLowerCase().includes(this.filtroRequerimiento.toLowerCase());
-      const matchDesde = !this.filtroFechaDesde || t.fechaCreacion >= this.filtroFechaDesde;
-      const matchHasta = !this.filtroFechaHasta || t.fechaCreacion <= this.filtroFechaHasta;
-      return matchLocal && matchSector && matchReq && matchDesde && matchHasta;
+      const matchLocal =
+        !this.filtroLocal || t.local === this.filtroLocal;
+
+      const matchSector =
+        !this.filtroSector || t.sector === this.filtroSector;
+
+      const matchReq =
+        !this.filtroRequerimiento ||
+        t.tipoRequerimiento
+          ?.toLowerCase()
+          .includes(this.filtroRequerimiento.toLowerCase());
+
+      const matchDesde =
+        !this.filtroFechaDesde ||
+        t.fechaCreacion >= this.filtroFechaDesde;
+
+      const matchHasta =
+        !this.filtroFechaHasta ||
+        t.fechaCreacion <= this.filtroFechaHasta;
+
+      return (
+        matchLocal &&
+        matchSector &&
+        matchReq &&
+        matchDesde &&
+        matchHasta
+      );
     });
   }
 
@@ -107,6 +167,7 @@ export class MantenimientoAdmin {
 
   abrirModal() {
     this.modoModal = 'crear';
+
     this.tareaSeleccionada = {
       titulo: '',
       descripcion: '',
@@ -115,6 +176,7 @@ export class MantenimientoAdmin {
       fechaLimite: '',
       empleados: []
     };
+
     this.mostrarModal = true;
   }
 
@@ -134,12 +196,27 @@ export class MantenimientoAdmin {
   }
 
   get tareasActivas() {
-    const orden: Record<string, number> = { 'NO_REALIZADO': 0, 'PENDIENTE': 1 };
-    return this.aplicarFiltros(this.tareas.filter(t => t.estado.toString() !== 'FINALIZADO'))
-      .sort((a, b) => (orden[a.estado] ?? 2) - (orden[b.estado] ?? 2));
+    const orden: Record<string, number> = {
+      NO_REALIZADO: 0,
+      PENDIENTE: 1
+    };
+
+    return this.aplicarFiltros(
+      this.tareas.filter(
+        t => t.estado?.toString() !== 'FINALIZADO'
+      )
+    ).sort(
+      (a, b) =>
+        (orden[a.estado] ?? 2) -
+        (orden[b.estado] ?? 2)
+    );
   }
 
   get tareasFinalizadas() {
-    return this.aplicarFiltros(this.tareas.filter(t => t.estado.toString() === 'FINALIZADO'));
+    return this.aplicarFiltros(
+      this.tareas.filter(
+        t => t.estado?.toString() === 'FINALIZADO'
+      )
+    );
   }
 }
