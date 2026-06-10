@@ -78,12 +78,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let tarea of tareasActivasPaginadas" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'">
+                <tr *ngFor="let tarea of tareasActivasPaginadas" [class.no-finalizado]="tarea.estado === 'NO_FINALIZADO'">
                     <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
                         <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
                             [class.finalizado]="tarea.estado === 'FINALIZADO'"
-                            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+                            [class.no-finalizado-text]="tarea.estado === 'NO_FINALIZADO'">
                             {{ tarea.estado }}
                         </span>
                     </td>
@@ -149,7 +149,7 @@
                     <td>
                         <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
                             [class.finalizado]="tarea.estado === 'FINALIZADO'"
-                            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+                            [class.no-finalizado-text]="tarea.estado === 'NO-FINALIZADO'">
                             {{ tarea.estado }}
                         </span>
                     </td>

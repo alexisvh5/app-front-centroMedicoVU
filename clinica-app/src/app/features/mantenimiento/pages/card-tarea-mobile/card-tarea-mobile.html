@@ -1,4 +1,4 @@
-<div class="tarea-card" [class.no-realizado]="tarea.estado === 'NO_REALIZADO'" [class.open]="isOpen">
+<div class="tarea-card" [class.no-finalizado]="tarea.estado === 'NO_FINALIZADO'" [class.open]="isOpen">
 
   <!-- HEADER MOBILE (solo visible en mobile, clickeable) -->
   <div class="card-header" (click)="isOpen = !isOpen">
@@ -9,7 +9,7 @@
       </span>
     </div>
     <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
-      [class.finalizado]="tarea.estado === 'FINALIZADO'" [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+      [class.finalizado]="tarea.estado === 'FINALIZADO'" [class.no-finalizado-text]="tarea.estado === 'NO_FINALIZADO'">
       {{ tarea.estado }}
     </span>
     <i class="ti ti-chevron-down chevron"></i>
@@ -27,7 +27,7 @@
           </div>
           <span class="estado desktop-estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
             [class.finalizado]="tarea.estado === 'FINALIZADO'"
-            [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
+            [class.no-finalizado-text]="tarea.estado === 'NO_FINALIZADO'">
             {{ tarea.estado }}
           </span>
         </div>

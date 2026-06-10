@@ -308,15 +308,15 @@
   background: #f1f5f9;
 }
 
-.tabla-tareas tbody tr.no-realizado {
+.tabla-tareas tbody tr.no-finalizado {
   background: #fffbfb;
 }
 
-.tabla-tareas tbody tr.no-realizado:hover {
+.tabla-tareas tbody tr.no-finalizado:hover {
   background: #fef2f2;
 }
 
-.tabla-tareas tbody tr.no-realizado .td-titulo {
+.tabla-tareas tbody tr.no-finalizado .td-titulo {
   color: #b91c1c;
   font-weight: 600;
 }
@@ -410,7 +410,7 @@
 
 .tabla-tareas .pendiente { background: #fff7ed; color: #ea580c; }
 .tabla-tareas .finalizado { background: #dcfce7; color: #15803d; }
-.tabla-tareas .no-realizado-text { background: #fee2e2; color: #b91c1c; }
+.tabla-tareas .no-finalizado-text { background: #fee2e2; color: #b91c1c; }
 
 /* Reuse prioridad badges in table */
 .tabla-tareas .prioridad {
