@@ -4,9 +4,9 @@
   <div class="card-header" (click)="isOpen = !isOpen">
     <div class="header-main">
       <div class="titulo">{{ tarea.titulo }}{{ tarea.tipoRequerimiento }}</div>
-      <div class="asignados-mini">
-        <span class="chip-mini" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
-      </div>
+      <span class="chip-mini" *ngFor="let asignado of tarea.asignados | keyvalue">
+        {{ asignado.value }}
+      </span>
     </div>
     <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
       [class.finalizado]="tarea.estado === 'FINALIZADO'" [class.no-realizado-text]="tarea.estado === 'NO_REALIZADO'">
@@ -71,7 +71,9 @@
             </div>
             <div class="info-item" *ngIf="tarea.asignados?.length">
               <span class="label">Asignados:</span>
-              <span *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
+              <span *ngFor="let asignado of tarea.asignados | keyvalue">
+                {{ asignado.value }}
+              </span>
             </div>
           </div>
         </div>
