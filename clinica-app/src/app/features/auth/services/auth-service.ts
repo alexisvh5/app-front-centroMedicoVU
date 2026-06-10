@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,9 @@ export class AuthService {
   private http = inject(HttpClient);
 
   private readonly apiUrl = `${environment.apiUrl}/login`;
+
+  private nombreSubject = new BehaviorSubject<string>(localStorage.getItem('nombre') ?? '');
+  nombre$ = this.nombreSubject.asObservable();
 
   login(dni: string, clave: string): Observable<any> {
 
@@ -27,6 +30,7 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         if (response.nombre) {
           localStorage.setItem('nombre', response.nombre);
+          this.nombreSubject.next(response.nombre);
         }
       })
     );
@@ -51,5 +55,6 @@ export class AuthService {
 
     localStorage.removeItem('token');
     localStorage.removeItem('nombre');
+    this.nombreSubject.next('');
   }
 }

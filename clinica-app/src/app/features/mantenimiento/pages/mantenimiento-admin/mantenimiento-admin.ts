@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { ModalCrearEditarTarea } from '../modal-crear-editar-tarea/modal-crear-editar-tarea';
 import { CardTareaMobile } from '../card-tarea-mobile/card-tarea-mobile';
-import { Header } from './../../../../shared/header/header';
 import { ModalDetalle } from '../modal-detalle/modal-detalle';
 import { TareaService } from '../../service/tarea-service';
 
@@ -16,7 +15,6 @@ import { TareaService } from '../../service/tarea-service';
     FormsModule,
     ModalCrearEditarTarea,
     CardTareaMobile,
-    Header,
     ModalDetalle
   ],
   templateUrl: './mantenimiento-admin.html',

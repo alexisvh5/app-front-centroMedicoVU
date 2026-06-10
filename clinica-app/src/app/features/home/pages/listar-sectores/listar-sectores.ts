@@ -1,9 +1,8 @@
-import { Header } from './../../../../shared/header/header';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-listar-sectores',
-  imports: [Header],
+  imports: [],
   templateUrl: './listar-sectores.html',
   styleUrl: './listar-sectores.css',
   standalone: true

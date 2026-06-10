@@ -26,12 +26,12 @@
   </div>
 
   <div class="user-menu">
-    <button class="user-btn" (click)="toggleMenu()">
-      <span class="user-name">{{ nombre }}</span>
+    <button class="user-btn" (click)="toggleMenu($event)">
+      <span class="user-name">{{ authService.nombre$ | async }}</span>
       <span class="chevron" [class.open]="menuOpen">▼</span>
     </button>
     <div class="dropdown" *ngIf="menuOpen">
-      <button class="dropdown-item" routerLink="/login" (click)="cerrarSesion()">
+      <button class="dropdown-item" (click)="cerrarSesion(); $event.stopPropagation()">
         Cerrar sesión
       </button>
     </div>
