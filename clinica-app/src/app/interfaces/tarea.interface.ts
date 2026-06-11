@@ -1,3 +1,5 @@
+import { CreadorDTO } from "./creadorDTO";
+
 export interface Tarea {
   id: number;
 
@@ -6,7 +8,7 @@ export interface Tarea {
 
   estado: string;
 
-  creadorDto: any;
+  creadorDto: CreadorDTO;
 
   asignados: Record<number, string>;
 

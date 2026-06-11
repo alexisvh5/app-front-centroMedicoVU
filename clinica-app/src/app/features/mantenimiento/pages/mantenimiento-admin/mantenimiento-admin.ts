@@ -130,11 +130,11 @@ export class MantenimientoAdmin implements OnInit {
 
       const matchDesde =
         !this.filtroFechaDesde ||
-        t.fechaCreacion >= this.filtroFechaDesde;
+        t.fechaDeCreacion >= this.filtroFechaDesde;
 
       const matchHasta =
         !this.filtroFechaHasta ||
-        t.fechaCreacion <= this.filtroFechaHasta;
+        t.fechaDeCreacion <= this.filtroFechaHasta;
 
       return (
         matchLocal &&

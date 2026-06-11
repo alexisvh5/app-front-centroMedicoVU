@@ -10,7 +10,7 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrl: './card-tarea-mobile.css',
 })
 export class CardTareaMobile {
-  @Input() tarea: any;
+  @Input() tarea!: Tarea;
 
   @Output() verDetalle = new EventEmitter();
 

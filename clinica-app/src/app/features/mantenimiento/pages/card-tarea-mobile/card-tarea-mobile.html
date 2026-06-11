@@ -3,7 +3,7 @@
   <!-- HEADER MOBILE (solo visible en mobile, clickeable) -->
   <div class="card-header" (click)="isOpen = !isOpen">
     <div class="header-main">
-      <div class="titulo">{{ tarea.titulo }}{{ tarea.tipoRequerimiento }}</div>
+      <div class="titulo">{{ tarea.tipoRequerimiento }}</div>
       <span class="chip-mini" *ngFor="let asignado of tarea.asignados | keyvalue">
         {{ asignado.value }}
       </span>
@@ -56,20 +56,20 @@
           <div class="info-item items-row">
             <div class="info-item">
               <span class="label">Creación:</span>
-              <span>{{ tarea.fechaCreacion }}</span>
+              <span>{{ tarea.fechaDeCreacion | date:'dd/MM/yyyy' }}</span>
             </div>
             <div class="info-item">
               <span class="label">Fecha Objetivo:</span>
-              <span>{{ tarea.fechaLimite }}</span>
+              <span>{{ tarea.fechaObjetivo | date:'dd/MM/yyyy' }}</span>
             </div>
           </div>
 
           <div class="info-item items-row">
             <div class="info-item">
               <span class="label">Creador:</span>
-              <span>{{ tarea.creador }}</span>
+              <span>{{ tarea.creadorDto.nombre }}</span>
             </div>
-            <div class="info-item" *ngIf="tarea.asignados?.length">
+            <div class="info-item" *ngIf="tarea.asignados && (tarea.asignados | keyvalue).length">
               <span class="label">Asignados:</span>
               <span *ngFor="let asignado of tarea.asignados | keyvalue">
                 {{ asignado.value }}

@@ -5,7 +5,7 @@
         <div class="header">
 
             <h2>
-                {{ tarea.titulo }}{{ tarea.tipoRequerimiento }}
+                {{ tarea.tipoRequerimiento }}
             </h2>
 
             <button (click)="cerrar.emit()">
@@ -17,7 +17,7 @@
         <div class="detalle">
 
             <p>
-                {{ tarea?.descripcion }}
+                {{ tarea.descripcion }}
             </p>
 
             <div class="fila">
@@ -25,7 +25,7 @@
                 <strong>Creador:</strong>
 
                 <span>
-                    {{ tarea.creador }}
+                    {{ tarea.creadorDto.nombre }}
                 </span>
 
             </div>
@@ -34,17 +34,12 @@
 
 
             <div class="fila">
-
                 <strong>Tiempo de demora:</strong>
-
-                <span>
-                    0 Días{{ tarea?.fechaLimite - tarea?.fechaCreacion | date:'short' }}
-                </span>
-
+                <span>{{ obtenerDemora(tarea) }} días</span>
             </div>
 
             <!-- TAREA NO FINALIZADA -->
-            <div *ngIf="tarea?.estado !== 'FINALIZADO'" class="observacion-container">
+            <div *ngIf="tarea.estado !== 'FINALIZADO'" class="observacion-container">
 
                 <label for="observacion">
                     <strong>Observación</strong>
@@ -61,17 +56,17 @@
             </div>
 
             <!-- TAREA FINALIZADA -->
-            <div *ngIf="tarea?.estado === 'FINALIZADO'" class="fila">
+            <div *ngIf="tarea.estado === 'FINALIZADO'" class="fila">
 
                 <strong>Observación:</strong>
 
                 <span>
-                    {{ tarea?.observacion || '-' }}
+                    {{ tarea.observacion || '-' }}
                 </span>
 
             </div>
         </div>
-        <div *ngIf="tarea?.estado !== 'FINALIZADO'" class="acciones">
+        <div *ngIf="tarea.estado !== 'FINALIZADO'" class="acciones">
 
             <button class="btn-cancelar">
                 Cancelar tarea

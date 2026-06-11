@@ -78,7 +78,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let tarea of tareasActivasPaginadas" [class.no-finalizado]="tarea.estado === 'NO_FINALIZADO'">
+                <tr *ngFor="let tarea of tareasActivasPaginadas"
+                    [class.no-finalizado]="tarea.estado === 'NO_FINALIZADO'">
                     <td class="td-titulo">{{ tarea.tipoRequerimiento }}</td>
                     <td>
                         <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
@@ -95,8 +96,8 @@
                     </td>
                     <td>{{ tarea.local }}</td>
                     <td>{{ tarea.sector }}</td>
-                    <td>{{ tarea.fechaDeCreacion }}</td>
-                    <td>{{ tarea.fechaObjetivo }}</td>
+                    <td>{{ tarea.fechaDeCreacion | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ tarea.fechaObjetivo | date:'dd/MM/yyyy' }}</td>
                     <td>
                         <span class="empleado-chip" *ngFor="let asignado of tarea.asignados | keyvalue">
                             {{ asignado.value }}
@@ -161,8 +162,8 @@
                     </td>
                     <td>{{ tarea.local }}</td>
                     <td>{{ tarea.sector }}</td>
-                    <td>{{ tarea.fechaCreacion }}</td>
-                    <td>{{ tarea.fechaLimite }}</td>
+                    <td>{{ tarea.fechaDeCreacion | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ tarea.fechaObjetivo | date:'dd/MM/yyyy' }}</td>
                     <td>
                         <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
                         <span class="sin-asignados" *ngIf="!tarea.asignados?.length">—</span>
