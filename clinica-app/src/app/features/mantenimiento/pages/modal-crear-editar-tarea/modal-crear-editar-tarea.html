@@ -18,13 +18,13 @@
 
             <label>Local solicitante</label>
 
-            <select [(ngModel)]="tarea.sector">
+            <select [(ngModel)]="tarea.local">
 
-                <option>831</option>
+                <option *ngFor="let local of opciones.locales" [value]="local">
 
-                <option>856</option>
+                    {{ local }}
 
-                <option>817</option>
+                </option>
 
             </select>
 
@@ -32,42 +32,44 @@
 
             <select [(ngModel)]="tarea.sector">
 
-                <option>cons1</option>
+                <option *ngFor="let sector of opciones.sectores" [value]="sector">
 
-                <option>cons2</option>
+                    {{ sector }}
 
-                <option>con3</option>
+                </option>
 
             </select>
+
             <label>Tipo de requerimiento</label>
-            <select [(ngModel)]="tarea.tipoRequiriemiento">
 
-                <option>Pintureria</option>
+            <select [(ngModel)]="tarea.tipoRequerimiento">
 
-                <option>Aire acondicionado</option>
+                <option *ngFor="let tipo of opciones.tiposRequerimiento" [value]="tipo">
 
-                <option>Electricidad</option>
+                    {{ tipo }}
+
+                </option>
 
             </select>
-
 
             <label>Descripción</label>
 
             <textarea [(ngModel)]="tarea.descripcion" maxlength="200">
-</textarea>
+            </textarea>
 
-            <p>{{ tarea.descripcion.length || 0 }}/200</p>
-
+            <p>
+                {{ tarea.descripcion?.length || 0 }}/200
+            </p>
 
             <label>Prioridad</label>
 
             <select [(ngModel)]="tarea.prioridad">
 
-                <option>ALTA</option>
+                <option *ngFor="let prioridad of opciones.prioridades" [value]="prioridad">
 
-                <option>MEDIA</option>
+                    {{ prioridad }}
 
-                <option>BAJA</option>
+                </option>
 
             </select>
 
@@ -77,31 +79,51 @@
 
                 <div class="empleado-item" *ngFor="let empleado of empleadosDisponibles">
 
-                    <input type="checkbox" [checked]="tarea.empleados.includes(empleado)"
-                        (change)="toggleEmpleado(empleado)">
+                    <input type="checkbox" [checked]="estaSeleccionado(empleado.id!)"
+                        (change)="toggleEmpleado(empleado.id!)">
 
                     <span>
-                        {{ empleado }}
+                        {{ empleado.nombre }}
                     </span>
 
                 </div>
 
             </div>
 
-            <label>Fecha estimada a finalizar</label>
+            <label>
+                Fecha estimada a finalizar
+            </label>
 
-            <input type="date" [(ngModel)]="tarea.fechaLimite">
+            <input type="date" [(ngModel)]="tarea.fechaObjetivo">
+
+            <label>
+                Estado
+            </label>
+
+            <select [(ngModel)]="tarea.estado">
+
+                <option *ngFor="let estado of opciones.estados" [value]="estado">
+
+                    {{ estado }}
+
+                </option>
+
+            </select>
 
         </div>
 
         <div class="acciones">
 
             <button class="btn-secondary" (click)="cerrar.emit()">
+
                 Cancelar
+
             </button>
 
             <button class="btn-primary" (click)="guardar()">
+
                 Guardar
+
             </button>
 
         </div>

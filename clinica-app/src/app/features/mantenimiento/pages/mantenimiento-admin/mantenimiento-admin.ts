@@ -219,4 +219,8 @@ export class MantenimientoAdmin implements OnInit {
       )
     );
   }
+
+  recargarTareas(): void {
+    this.tareaService.cargarTareas();
+  }
 }

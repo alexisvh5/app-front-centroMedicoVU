@@ -1,6 +1,23 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  inject
+} from '@angular/core';
+
 import { CommonModule } from '@angular/common';
-import { FormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
+import { UsuarioService } from '../../../usuario/service/usuario-service';
+import { Usuarios } from '../../../../interfaces/usuarios.interface';
+import { Tarea } from '../../../../interfaces/tarea.interface';
+import { OpcionesService } from '../../../opciones/service/opciones-service';
+import { OpcionesTarea } from '../../../../interfaces/opciones.interface';
+import { TareaService } from '../../service/tarea-service';
 
 @Component({
   selector: 'app-modal-crear-editar-tarea',
@@ -9,66 +26,172 @@ import { FormsModule, Validators } from '@angular/forms';
   templateUrl: './modal-crear-editar-tarea.html',
   styleUrl: './modal-crear-editar-tarea.css',
 })
-export class ModalCrearEditarTarea {
+export class ModalCrearEditarTarea implements OnInit, OnChanges {
+
+  private usuarioService = inject(UsuarioService);
+  private opcionesService = inject(OpcionesService);
+  private tareaService = inject(TareaService);
+  opciones: OpcionesTarea = {
+    locales: [],
+    sectores: [],
+    prioridades: [],
+    estados: [],
+    tiposRequerimiento: []
+  };
+
+  empleadosDisponibles: Usuarios[] = [];
+
+  empleadosSeleccionados: number[] = [];
 
   @Input() visible = false;
 
   @Input() modo: 'crear' | 'editar' = 'crear';
 
-  @Input() tarea: any = {
-
-    titulo: '',
-
-    descripcion: '',
-
-    sector: '',
-
-    prioridad: '',
-
-    fechaLimite: '',
-
-    empleados: []
-
-  };
+  @Input() tarea!: Tarea;
 
   @Output() cerrar = new EventEmitter<void>();
 
-  guardar() {
+  @Output() guardado = new EventEmitter<void>();
 
-    console.log('TAREA:', this.tarea);
+  ngOnInit(): void {
 
-    this.cerrar.emit();
+    this.usuarioService
+      .obtenerMantenimiento()
+      .subscribe({
+        next: (usuarios) => {
+          this.empleadosDisponibles = usuarios;
+        }
+      });
+
+    this.opcionesService
+      .obtenerOpcionesTarea()
+      .subscribe({
+        next: (opciones) => {
+          this.opciones = opciones;
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
   }
 
-  empleadosDisponibles = [
+  ngOnChanges(changes: SimpleChanges): void {
 
-    'Jorge',
+    if (
+      changes['tarea'] &&
+      this.tarea
+    ) {
 
-    'Carlos',
+      this.empleadosSeleccionados =
+        this.tarea.asignados
+          ? Object.keys(this.tarea.asignados).map(Number)
+          : [];
 
-    'Luisina',
+      if (this.tarea.fechaObjetivo) {
+        this.tarea.fechaObjetivo =
+          this.tarea.fechaObjetivo.split('T')[0];
+      }
+    }
+  }
 
-    'Matías',
+  estaSeleccionado(id: number): boolean {
+    return this.empleadosSeleccionados.includes(id);
+  }
 
-    'Camila'
+  toggleEmpleado(id: number): void {
 
-  ];
-
-  toggleEmpleado(empleado: string) {
-
-    const existe = this.tarea.empleados.includes(empleado);
+    const existe =
+      this.empleadosSeleccionados.includes(id);
 
     if (existe) {
 
-      this.tarea.empleados =
-        this.tarea.empleados.filter(
-          (e: string) => e !== empleado
+      this.empleadosSeleccionados =
+        this.empleadosSeleccionados.filter(
+          e => e !== id
         );
 
     } else {
 
-      this.tarea.empleados.push(empleado);
+      this.empleadosSeleccionados.push(id);
     }
   }
 
+  guardar(): void {
+
+    const request = {
+
+      estado: this.tarea.estado,
+
+      local: this.tarea.local,
+
+      sector: this.tarea.sector,
+
+      tipoRequerimiento: this.tarea.tipoRequerimiento,
+
+      descripcion: this.tarea.descripcion,
+
+      prioridad: this.tarea.prioridad,
+
+      asignadosIds: this.empleadosSeleccionados,
+
+      fechaObjetivo:
+        this.tarea.fechaObjetivo
+          ? `${this.tarea.fechaObjetivo}T00:00:00`
+          : ''
+    };
+
+    if (this.modo === 'crear') {
+
+      this.tareaService
+        .crearTarea(request)
+        .subscribe({
+
+          next: (tarea) => {
+
+            console.log(
+              'Tarea creada',
+              tarea
+            );
+            this.guardado.emit();
+            this.cerrar.emit();
+          },
+
+          error: (err) => {
+
+            console.error(
+              'Error al crear tarea',
+              err
+            );
+          }
+        });
+
+    } else {
+
+      this.tareaService
+        .editarTarea(
+          this.tarea.id,
+          request
+        )
+        .subscribe({
+
+          next: (tarea) => {
+
+            console.log(
+              'Tarea editada',
+              tarea
+            );
+            this.guardado.emit();
+            this.cerrar.emit();
+          },
+
+          error: (err) => {
+
+            console.error(
+              'Error al editar tarea',
+              err
+            );
+          }
+        });
+    }
+  }
 }

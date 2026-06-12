@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../../src/environments/environment';
 import { Tarea } from '../../../interfaces/tarea.interface';
+import { TareaRequestDTO } from '../../../interfaces/tareaRequestDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -35,12 +36,23 @@ export class TareaService {
     return this.http.get<Tarea[]>(`${this.baseApiUrl}/asignado/${idUsuario}`);
   }
 
-  crearTarea(tarea: Tarea) {
-    return this.http.post<Tarea>(this.baseApiUrl, tarea);
+  crearTarea(
+    request: TareaRequestDTO
+  ) {
+    return this.http.post<Tarea>(
+      this.baseApiUrl,
+      request
+    );
   }
 
-  editarTarea(id: number, tarea: Tarea) {
-    return this.http.put<Tarea>(`${this.baseApiUrl}/${id}`, tarea);
+  editarTarea(
+    id: number,
+    request: TareaRequestDTO
+  ) {
+    return this.http.put<Tarea>(
+      `${this.baseApiUrl}/${id}`,
+      request
+    );
   }
 
   eliminarTarea(id: number) {

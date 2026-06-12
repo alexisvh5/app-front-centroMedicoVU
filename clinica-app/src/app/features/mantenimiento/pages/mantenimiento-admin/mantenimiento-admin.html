@@ -206,7 +206,7 @@
 </div>
 
 <app-modal-crear-editar-tarea [visible]="mostrarModal" [modo]="modoModal" [tarea]="tareaSeleccionada"
-    (cerrar)="mostrarModal = false">
+    (guardado)="recargarTareas()" (cerrar)="mostrarModal = false">
 </app-modal-crear-editar-tarea>
 
 <app-modal-detalle [visible]="mostrarDetalle" [tarea]="tareaSeleccionada" (cerrar)="mostrarDetalle = false">
