@@ -43,6 +43,8 @@ export class ModalCrearEditarTarea implements OnInit, OnChanges {
 
   empleadosSeleccionados: number[] = [];
 
+  errores: Record<string, string> = {};
+
   @Input() visible = false;
 
   @Input() modo: 'crear' | 'editar' = 'crear';
@@ -77,10 +79,13 @@ export class ModalCrearEditarTarea implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (
-      changes['tarea'] &&
-      this.tarea
-    ) {
+    if (changes['visible']) {
+      this.errores = {};
+    }
+
+    if (changes['tarea'] && this.tarea) {
+
+      this.errores = {};
 
       this.empleadosSeleccionados =
         this.tarea.asignados
@@ -116,7 +121,63 @@ export class ModalCrearEditarTarea implements OnInit, OnChanges {
     }
   }
 
+  private validarFormulario(): boolean {
+
+    this.errores = {};
+
+    if (!this.tarea.local) {
+      this.errores['local'] = 'Debe seleccionar un local';
+    }
+
+    if (!this.tarea.sector) {
+      this.errores['sector'] = 'Debe seleccionar un sector';
+    }
+
+    if (!this.tarea.tipoRequerimiento) {
+      this.errores['tipoRequerimiento'] = 'Debe seleccionar un tipo';
+    }
+
+    if (!this.tarea.descripcion?.trim()) {
+      this.errores['descripcion'] = 'La descripción es obligatoria';
+    } else if (this.tarea.descripcion.trim().length < 10) {
+      this.errores['descripcion'] = 'Mínimo 10 caracteres';
+    }
+
+    if (!this.tarea.prioridad) {
+      this.errores['prioridad'] = 'Debe seleccionar una prioridad';
+    }
+
+    if (this.empleadosSeleccionados.length === 0) {
+      this.errores['empleados'] = 'Debe asignar al menos un empleado';
+    }
+
+    if (!this.tarea.fechaObjetivo) {
+      this.errores['fechaObjetivo'] = 'Debe seleccionar una fecha';
+    } else {
+
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0);
+
+      const fecha = new Date(this.tarea.fechaObjetivo);
+
+      if (fecha < hoy) {
+        this.errores['fechaObjetivo'] =
+          'La fecha no puede ser anterior a hoy';
+      }
+    }
+
+    if (this.modo === 'editar' && !this.tarea.estado) {
+      this.errores['estado'] = 'Debe seleccionar un estado';
+    }
+
+    return Object.keys(this.errores).length === 0;
+  }
+
   guardar(): void {
+
+    if (!this.validarFormulario()) {
+      return;
+    }
 
     const request = {
 
@@ -194,4 +255,5 @@ export class ModalCrearEditarTarea implements OnInit, OnChanges {
         });
     }
   }
+
 }

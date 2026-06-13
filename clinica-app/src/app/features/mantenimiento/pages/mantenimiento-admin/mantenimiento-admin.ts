@@ -7,6 +7,7 @@ import { ModalCrearEditarTarea } from '../modal-crear-editar-tarea/modal-crear-e
 import { CardTareaMobile } from '../card-tarea-mobile/card-tarea-mobile';
 import { ModalDetalle } from '../modal-detalle/modal-detalle';
 import { TareaService } from '../../service/tarea-service';
+import { Tarea } from '../../../../interfaces/tarea.interface';
 
 @Component({
   selector: 'app-mantenimiento-admin',
@@ -30,7 +31,7 @@ export class MantenimientoAdmin implements OnInit {
 
   mostrarModal = false;
   mostrarDetalle = false;
-  tareaSeleccionada: any = null;
+  tareaSeleccionada!: Tarea;
   modoModal: 'crear' | 'editar' = 'crear';
   vistaActual: 'activas' | 'finalizadas' = 'activas';
 
@@ -159,25 +160,36 @@ export class MantenimientoAdmin implements OnInit {
   cambiarTab(vista: 'activas' | 'finalizadas') {
     this.vistaActual = vista;
     this.paginaActual = 1;
-      this.cdr.detectChanges();
+    this.cdr.detectChanges();
   }
 
   irAPagina(n: number) {
     this.paginaActual = n;
   }
 
-  abrirModal() {
-    this.modoModal = 'crear';
-
-    this.tareaSeleccionada = {
-      titulo: '',
+  private crearTareaVacia(): Tarea {
+    return {
+      id: 0,
+      fechaDeCreacion: '',
+      fechaObjetivo: '',
+      estado: '',
+      creadorDto: {
+        id: 0,
+        nombre: ''
+      },
+      asignados: {},
       descripcion: '',
+      tipoRequerimiento: '',
+      local: '',
       sector: '',
       prioridad: '',
-      fechaLimite: '',
-      empleados: []
+      observacion: ''
     };
+  }
 
+  abrirModal() {
+    this.modoModal = 'crear';
+    this.tareaSeleccionada = this.crearTareaVacia();
     this.mostrarModal = true;
   }
 
@@ -207,16 +219,16 @@ export class MantenimientoAdmin implements OnInit {
 
       return {
         'Fecha creación': t.fechaDeCreacion ?? '',
-        'Requerimiento':  t.tipoRequerimiento ?? '',
-        'Estado':         t.estado ?? '',
-        'Prioridad':      t.prioridad ?? '',
-        'Local':          t.local ?? '',
-        'Sector':         t.sector ?? '',
+        'Requerimiento': t.tipoRequerimiento ?? '',
+        'Estado': t.estado ?? '',
+        'Prioridad': t.prioridad ?? '',
+        'Local': t.local ?? '',
+        'Sector': t.sector ?? '',
         'Días de retraso': diasRetraso,
-        'Asignados':      t.asignados ? Object.values(t.asignados).join(', ') : '',
-        'Creador':        t.creadorDto?.nombre ?? '',
-        'Observaciones':  t.observacion ?? '',
-        'Descripción':    t.descripcion ?? '',
+        'Asignados': t.asignados ? Object.values(t.asignados).join(', ') : '',
+        'Creador': t.creadorDto?.nombre ?? '',
+        'Observaciones': t.observacion ?? '',
+        'Descripción': t.descripcion ?? '',
       };
     });
 

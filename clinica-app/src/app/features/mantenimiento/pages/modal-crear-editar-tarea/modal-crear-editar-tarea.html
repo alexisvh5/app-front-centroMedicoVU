@@ -18,9 +18,15 @@
 
             <label>Local solicitante</label>
 
-            <select [(ngModel)]="tarea.local">
+            <select
+                [(ngModel)]="tarea.local"
+                [class.input-error]="errores['local']">
 
-                <option *ngFor="let local of opciones.locales" [value]="local">
+                <option value="">Seleccione un local</option>
+
+                <option
+                    *ngFor="let local of opciones.locales"
+                    [value]="local">
 
                     {{ local }}
 
@@ -28,11 +34,21 @@
 
             </select>
 
+            <small class="error" *ngIf="errores['local']">
+                {{ errores['local'] }}
+            </small>
+
             <label>Sector</label>
 
-            <select [(ngModel)]="tarea.sector">
+            <select
+                [(ngModel)]="tarea.sector"
+                [class.input-error]="errores['sector']">
 
-                <option *ngFor="let sector of opciones.sectores" [value]="sector">
+                <option value="">Seleccione un sector</option>
+
+                <option
+                    *ngFor="let sector of opciones.sectores"
+                    [value]="sector">
 
                     {{ sector }}
 
@@ -40,11 +56,21 @@
 
             </select>
 
+            <small class="error" *ngIf="errores['sector']">
+                {{ errores['sector'] }}
+            </small>
+
             <label>Tipo de requerimiento</label>
 
-            <select [(ngModel)]="tarea.tipoRequerimiento">
+            <select
+                [(ngModel)]="tarea.tipoRequerimiento"
+                [class.input-error]="errores['tipoRequerimiento']">
 
-                <option *ngFor="let tipo of opciones.tiposRequerimiento" [value]="tipo">
+                <option value="">Seleccione un tipo</option>
+
+                <option
+                    *ngFor="let tipo of opciones.tiposRequerimiento"
+                    [value]="tipo">
 
                     {{ tipo }}
 
@@ -52,10 +78,21 @@
 
             </select>
 
+            <small class="error" *ngIf="errores['tipoRequerimiento']">
+                {{ errores['tipoRequerimiento'] }}
+            </small>
+
             <label>Descripción</label>
 
-            <textarea [(ngModel)]="tarea.descripcion" maxlength="200">
+            <textarea
+                [(ngModel)]="tarea.descripcion"
+                maxlength="200"
+                [class.input-error]="errores['descripcion']">
             </textarea>
+
+            <small class="error" *ngIf="errores['descripcion']">
+                {{ errores['descripcion'] }}
+            </small>
 
             <p>
                 {{ tarea.descripcion?.length || 0 }}/200
@@ -63,9 +100,15 @@
 
             <label>Prioridad</label>
 
-            <select [(ngModel)]="tarea.prioridad">
+            <select
+                [(ngModel)]="tarea.prioridad"
+                [class.input-error]="errores['prioridad']">
 
-                <option *ngFor="let prioridad of opciones.prioridades" [value]="prioridad">
+                <option value="">Seleccione una prioridad</option>
+
+                <option
+                    *ngFor="let prioridad of opciones.prioridades"
+                    [value]="prioridad">
 
                     {{ prioridad }}
 
@@ -73,13 +116,21 @@
 
             </select>
 
+            <small class="error" *ngIf="errores['prioridad']">
+                {{ errores['prioridad'] }}
+            </small>
+
             <label>Asignar empleados</label>
 
             <div class="empleados-grid">
 
-                <div class="empleado-item" *ngFor="let empleado of empleadosDisponibles">
+                <div
+                    class="empleado-item"
+                    *ngFor="let empleado of empleadosDisponibles">
 
-                    <input type="checkbox" [checked]="estaSeleccionado(empleado.id!)"
+                    <input
+                        type="checkbox"
+                        [checked]="estaSeleccionado(empleado.id!)"
                         (change)="toggleEmpleado(empleado.id!)">
 
                     <span>
@@ -90,30 +141,64 @@
 
             </div>
 
+            <small class="error" *ngIf="errores['empleados']">
+                {{ errores['empleados'] }}
+            </small>
+
             <label>
                 Fecha estimada a finalizar
             </label>
 
-            <input type="date" [(ngModel)]="tarea.fechaObjetivo">
+            <input
+                type="date"
+                [(ngModel)]="tarea.fechaObjetivo"
+                [class.input-error]="errores['fechaObjetivo']">
 
-            <label *ngIf="modo === 'editar'"> Estado </label>
-            <select *ngIf="modo === 'editar'" [(ngModel)]="tarea.estado">
-                <option *ngFor="let estado of opciones.estados" [value]="estado">
-                    {{ estado }}
-                </option>
-            </select>
+            <small class="error" *ngIf="errores['fechaObjetivo']">
+                {{ errores['fechaObjetivo'] }}
+            </small>
+
+            <ng-container *ngIf="modo === 'editar'">
+
+                <label>Estado</label>
+
+                <select
+                    [(ngModel)]="tarea.estado"
+                    [class.input-error]="errores['estado']">
+
+                    <option value="">Seleccione un estado</option>
+
+                    <option
+                        *ngFor="let estado of opciones.estados"
+                        [value]="estado">
+
+                        {{ estado }}
+
+                    </option>
+
+                </select>
+
+                <small class="error" *ngIf="errores['estado']">
+                    {{ errores['estado'] }}
+                </small>
+
+            </ng-container>
 
         </div>
 
         <div class="acciones">
 
-            <button class="btn-secondary" (click)="cerrar.emit()">
+            <button
+                class="btn-secondary"
+                (click)="cerrar.emit()">
 
                 Cancelar
 
             </button>
 
-            <button class="btn-primary" (click)="guardar()">
+            <button
+                class="btn-primary"
+                (click)="guardar()">
 
                 Guardar
 
