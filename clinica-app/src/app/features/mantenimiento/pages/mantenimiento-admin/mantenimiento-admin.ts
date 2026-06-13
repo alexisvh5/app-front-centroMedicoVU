@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import * as XLSX from 'xlsx';
 
 import { ModalCrearEditarTarea } from '../modal-crear-editar-tarea/modal-crear-editar-tarea';
 import { CardTareaMobile } from '../card-tarea-mobile/card-tarea-mobile';
@@ -158,7 +159,7 @@ export class MantenimientoAdmin implements OnInit {
   cambiarTab(vista: 'activas' | 'finalizadas') {
     this.vistaActual = vista;
     this.paginaActual = 1;
-    this.cdr.detectChanges();
+      this.cdr.detectChanges();
   }
 
   irAPagina(n: number) {
@@ -180,8 +181,65 @@ export class MantenimientoAdmin implements OnInit {
     this.mostrarModal = true;
   }
 
-  descargarPdf() {
-    console.log('Descargando PDF con las tareas...');
+  descargarExcel() {
+    let registros: any[];
+
+    if (this.hayFiltrosActivos) {
+      registros = this.aplicarFiltros(this.tareas);
+    } else {
+      const haceUnaSemana = new Date();
+      haceUnaSemana.setDate(haceUnaSemana.getDate() - 7);
+      const fechaCorte = haceUnaSemana.toISOString().split('T')[0];
+      registros = this.tareas.filter(t => t.fechaDeCreacion >= fechaCorte);
+    }
+
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    const filas = registros.map(t => {
+      let diasRetraso = 0;
+      if (t.fechaObjetivo && t.estado !== 'FINALIZADO') {
+        const objetivo = new Date(t.fechaObjetivo);
+        objetivo.setHours(0, 0, 0, 0);
+        const diff = hoy.getTime() - objetivo.getTime();
+        diasRetraso = diff > 0 ? Math.floor(diff / (1000 * 60 * 60 * 24)) : 0;
+      }
+
+      return {
+        'Fecha creación': t.fechaDeCreacion ?? '',
+        'Requerimiento':  t.tipoRequerimiento ?? '',
+        'Estado':         t.estado ?? '',
+        'Prioridad':      t.prioridad ?? '',
+        'Local':          t.local ?? '',
+        'Sector':         t.sector ?? '',
+        'Días de retraso': diasRetraso,
+        'Asignados':      t.asignados ? Object.values(t.asignados).join(', ') : '',
+        'Creador':        t.creadorDto?.nombre ?? '',
+        'Observaciones':  t.observacion ?? '',
+        'Descripción':    t.descripcion ?? '',
+      };
+    });
+
+    const hoja = XLSX.utils.json_to_sheet(filas);
+
+    // Ancho de columnas basado en el contenido más largo de cada columna
+    const columnas = Object.keys(filas[0] ?? {});
+    hoja['!cols'] = columnas.map(col => {
+      const maxContenido = Math.max(
+        col.length,
+        ...filas.map(f => String((f as any)[col] ?? '').length)
+      );
+      return { wch: Math.min(maxContenido + 2, 40) };
+    });
+
+    // Congelar la primera fila (encabezados)
+    hoja['!freeze'] = { xSplit: 0, ySplit: 1 };
+
+    const libro = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(libro, hoja, 'Tareas');
+
+    const fecha = new Date().toISOString().split('T')[0];
+    XLSX.writeFile(libro, `tareas_${fecha}.xlsx`);
   }
 
   abrirDetalle(tarea: any) {
