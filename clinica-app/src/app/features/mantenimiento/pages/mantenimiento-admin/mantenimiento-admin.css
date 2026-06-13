@@ -20,6 +20,7 @@
   font-size: .85rem;
   color: var(--color-text-secondary);
 }
+
 .nueva-tarea,
 .descargar-pdf {
   border: none;
@@ -29,7 +30,7 @@
   font-size: .82rem;
   font-weight: 600;
   cursor: pointer;
-} 
+}
 
 .nueva-tarea {
   background: var(--color-primary);
@@ -38,10 +39,12 @@
 .descargar-pdf {
   background: rgb(199, 0, 0);
 }
+
 .acciones-header {
   display: flex;
   gap: .5rem;
 }
+
 /* TABS */
 .tabs {
   display: flex;
@@ -214,13 +217,14 @@
 }
 
 .pag-btn:hover:not(:disabled) {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
 }
 
 .pag-btn.activo {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
   color: white;
 }
 
@@ -360,7 +364,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: .2s;
-  
+
 }
 
 .btn-tabla.ver {
@@ -408,9 +412,25 @@
   white-space: nowrap;
 }
 
-.tabla-tareas .pendiente { background: #fff7ed; color: #ea580c; }
-.tabla-tareas .finalizado { background: #dcfce7; color: #15803d; }
-.tabla-tareas .no-finalizado-text { background: #fee2e2; color: #b91c1c; }
+.tabla-tareas .pendiente {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.tabla-tareas .finalizado {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tabla-tareas .no-finalizado-text {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.tabla-tareas .cancelado {
+  background: #e2e8f0;
+  color: #475569;
+}
 
 /* Reuse prioridad badges in table */
 .tabla-tareas .prioridad {
@@ -422,9 +442,17 @@
   color: white;
 }
 
-.tabla-tareas .alta { background: #dc2626; }
-.tabla-tareas .media { background: #f59e0b; }
-.tabla-tareas .baja { background: #16a34a; }
+.tabla-tareas .alta {
+  background: #dc2626;
+}
+
+.tabla-tareas .media {
+  background: #f59e0b;
+}
+
+.tabla-tareas .baja {
+  background: #16a34a;
+}
 
 /* =========================
    DESKTOP (>640px)
@@ -433,6 +461,7 @@
   .desktop-only {
     display: block;
   }
+
   .mobile-only {
     display: none;
   }

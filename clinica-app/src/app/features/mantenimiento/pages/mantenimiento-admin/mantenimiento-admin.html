@@ -84,7 +84,8 @@
                     <td>
                         <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
                             [class.finalizado]="tarea.estado === 'FINALIZADO'"
-                            [class.no-finalizado-text]="tarea.estado === 'NO_FINALIZADO'">
+                            [class.no-finalizado-text]="tarea.estado === 'NO_FINALIZADO'"
+                            [class.cancelado]="tarea.estado === 'CANCELADO'">
                             {{ tarea.estado }}
                         </span>
                     </td>
@@ -150,7 +151,8 @@
                     <td>
                         <span class="estado" [class.pendiente]="tarea.estado === 'PENDIENTE'"
                             [class.finalizado]="tarea.estado === 'FINALIZADO'"
-                            [class.no-finalizado-text]="tarea.estado === 'NO-FINALIZADO'">
+                            [class.no-finalizado-text]="tarea.estado === 'NO-FINALIZADO'"
+                            [class.cancelado]="tarea.estado === 'CANCELADO'">
                             {{ tarea.estado }}
                         </span>
                     </td>

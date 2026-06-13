@@ -96,18 +96,11 @@
 
             <input type="date" [(ngModel)]="tarea.fechaObjetivo">
 
-            <label>
-                Estado
-            </label>
-
-            <select [(ngModel)]="tarea.estado">
-
+            <label *ngIf="modo === 'editar'"> Estado </label>
+            <select *ngIf="modo === 'editar'" [(ngModel)]="tarea.estado">
                 <option *ngFor="let estado of opciones.estados" [value]="estado">
-
                     {{ estado }}
-
                 </option>
-
             </select>
 
         </div>
