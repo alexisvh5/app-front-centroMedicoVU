@@ -22,7 +22,7 @@ export class TareaService {
   private http = inject(HttpClient);
 
   cargarTareas(page: number, size: number, vista: string, filtros: Record<string, string> = {}) {
-    const params: Record<string, any> = { page, size, vista };
+    const params: Record<string, any> = { page, size, estado: vista };
     Object.entries(filtros).forEach(([key, val]) => {
       if (val) params[key] = val;
     });
@@ -38,12 +38,12 @@ export class TareaService {
 
   getConteo(vista: string): Observable<number> {
     return this.http.get<PageResponse<Tarea>>(this.baseApiUrl, {
-      params: { page: 0, size: 1, vista }
+      params: { page: 0, size: 1, estado: vista }
     }).pipe(map(r => r.totalElements));
   }
 
   descargarTodas(vista: string, filtros: Record<string, string>): Observable<Tarea[]> {
-    const params: Record<string, any> = { page: 0, size: 9999, vista };
+    const params: Record<string, any> = { page: 0, size: 9999, estado: vista };
     Object.entries(filtros).forEach(([key, val]) => {
       if (val) params[key] = val;
     });
