@@ -48,6 +48,9 @@ export class MantenimientoAdmin implements OnInit {
   totalActivas = 0;
   totalFinalizadas = 0;
 
+  totalActivasBadge = 0;
+  totalFinalizadasBadge = 0;
+
   localesUnicos: string[] = [];
   sectoresUnicos: string[] = [];
 
@@ -77,10 +80,12 @@ export class MantenimientoAdmin implements OnInit {
     });
 
     this.cargarTareasFiltradas();
+    this.actualizarContadoresBadge();
+  }
 
-    this.tareaService.getConteo('finalizadas').subscribe(total => {
-      this.totalFinalizadas = total;
-    });
+  private actualizarContadoresBadge(): void {
+    this.tareaService.getConteo('activas').subscribe(total => this.totalActivasBadge = total);
+    this.tareaService.getConteo('finalizadas').subscribe(total => this.totalFinalizadasBadge = total);
   }
 
   get hayFiltrosActivos(): boolean {
@@ -136,6 +141,7 @@ export class MantenimientoAdmin implements OnInit {
     this.vistaActual = vista;
     this.paginaActual = 1;
     this.cargarTareasFiltradas();
+    this.actualizarContadoresBadge();
     this.cdr.detectChanges();
   }
 
@@ -245,5 +251,6 @@ export class MantenimientoAdmin implements OnInit {
 
   recargarTareas(): void {
     this.cargarTareasFiltradas();
+    this.actualizarContadoresBadge();
   }
 }

@@ -15,11 +15,11 @@
     <div class="tabs">
         <button class="tab" [class.activo]="vistaActual === 'activas'" (click)="cambiarTab('activas')">
             Activas
-            <span class="badge">{{ totalActivas }}</span>
+            <span class="badge">{{ totalActivasBadge }}</span>
         </button>
         <button class="tab" [class.activo]="vistaActual === 'finalizadas'" (click)="cambiarTab('finalizadas')">
             Finalizadas
-            <span class="badge finalizadas">{{ totalFinalizadas }}</span>
+            <span class="badge finalizadas">{{ totalFinalizadasBadge }}</span>
         </button>
     </div>
 
