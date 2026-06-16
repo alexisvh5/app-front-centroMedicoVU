@@ -181,7 +181,7 @@ export class ModalCrearEditarTarea implements OnInit, OnChanges {
 
     const request = {
 
-      estado: this.tarea.estado,
+      estado: this.modo === 'crear' ? 'PENDIENTE' : this.tarea.estado,
 
       local: this.tarea.local,
 
