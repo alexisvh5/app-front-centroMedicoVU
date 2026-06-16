@@ -15,11 +15,11 @@
     <div class="tabs">
         <button class="tab" [class.activo]="vistaActual === 'activas'" (click)="cambiarTab('activas')">
             Activas
-            <span class="badge">{{ tareasActivas.length }}</span>
+            <span class="badge">{{ totalActivas }}</span>
         </button>
         <button class="tab" [class.activo]="vistaActual === 'finalizadas'" (click)="cambiarTab('finalizadas')">
             Finalizadas
-            <span class="badge finalizadas">{{ tareasFinalizadas.length }}</span>
+            <span class="badge finalizadas">{{ totalFinalizadas }}</span>
         </button>
     </div>
 
@@ -28,31 +28,31 @@
         <div class="filtros-campos">
             <div class="filtro-grupo">
                 <label>Requerimiento</label>
-                <input type="text" [(ngModel)]="filtroRequerimiento" (ngModelChange)="paginaActual = 1"
+                <input type="text" [(ngModel)]="filtroRequerimiento" (ngModelChange)="onFiltroChange()"
                     placeholder="Buscar..." class="filtro-input" />
             </div>
             <div class="filtro-grupo">
                 <label>Local</label>
-                <select [(ngModel)]="filtroLocal" (ngModelChange)="paginaActual = 1" class="filtro-select">
+                <select [(ngModel)]="filtroLocal" (ngModelChange)="onFiltroChange()" class="filtro-select">
                     <option value="">Todos</option>
                     <option *ngFor="let local of localesUnicos" [value]="local">{{ local }}</option>
                 </select>
             </div>
             <div class="filtro-grupo">
                 <label>Sector</label>
-                <select [(ngModel)]="filtroSector" (ngModelChange)="paginaActual = 1" class="filtro-select">
+                <select [(ngModel)]="filtroSector" (ngModelChange)="onFiltroChange()" class="filtro-select">
                     <option value="">Todos</option>
                     <option *ngFor="let sector of sectoresUnicos" [value]="sector">{{ sector }}</option>
                 </select>
             </div>
             <div class="filtro-grupo">
                 <label>Fecha desde</label>
-                <input type="date" [(ngModel)]="filtroFechaDesde" (ngModelChange)="paginaActual = 1"
+                <input type="date" [(ngModel)]="filtroFechaDesde" (ngModelChange)="onFiltroChange()"
                     class="filtro-input" />
             </div>
             <div class="filtro-grupo">
                 <label>Fecha hasta</label>
-                <input type="date" [(ngModel)]="filtroFechaHasta" (ngModelChange)="paginaActual = 1"
+                <input type="date" [(ngModel)]="filtroFechaHasta" (ngModelChange)="onFiltroChange()"
                     class="filtro-input" />
             </div>
         </div>
@@ -118,7 +118,7 @@
                 </tr>
             </tbody>
         </table>
-        <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
+        <p class="empty" *ngIf="totalActivas === 0">No hay tareas activas.</p>
     </div>
 
     <!-- ACTIVAS - Mobile cards -->
@@ -126,7 +126,7 @@
         <app-card-tarea-mobile *ngFor="let tarea of tareasActivasPaginadas" [tarea]="tarea"
             (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)">
         </app-card-tarea-mobile>
-        <p class="empty" *ngIf="!tareasActivas.length">No hay tareas activas.</p>
+        <p class="empty" *ngIf="totalActivas === 0">No hay tareas activas.</p>
     </div>
 
     <!-- FINALIZADAS - Desktop table -->
@@ -167,8 +167,14 @@
                     <td>{{ tarea.fechaDeCreacion | date:'dd/MM/yyyy' }}</td>
                     <td>{{ tarea.fechaObjetivo | date:'dd/MM/yyyy' }}</td>
                     <td>
-                        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados">{{ asignado }}</span>
-                        <span class="sin-asignados" *ngIf="!tarea.asignados?.length">—</span>
+                        <span class="empleado-chip" *ngFor="let asignado of tarea.asignados | keyvalue">
+                            {{ asignado.value }}
+                        </span>
+
+                        <span class="sin-asignados"
+                            *ngIf="!tarea.asignados || (tarea.asignados | keyvalue)?.length === 0">
+                            —
+                        </span>
                     </td>
                     <td class="td-acciones">
                         <div class="acciones-btns">
@@ -179,7 +185,7 @@
                 </tr>
             </tbody>
         </table>
-        <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
+        <p class="empty" *ngIf="totalFinalizadas === 0">No hay tareas finalizadas.</p>
     </div>
 
     <!-- FINALIZADAS - Mobile cards -->
@@ -187,7 +193,7 @@
         <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadasPaginadas" [tarea]="tarea"
             (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)">
         </app-card-tarea-mobile>
-        <p class="empty" *ngIf="!tareasFinalizadas.length">No hay tareas finalizadas.</p>
+        <p class="empty" *ngIf="totalFinalizadas === 0">No hay tareas finalizadas.</p>
     </div>
 
     <!-- PAGINACIÓN -->

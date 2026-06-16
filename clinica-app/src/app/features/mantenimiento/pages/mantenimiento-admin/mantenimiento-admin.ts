@@ -7,6 +7,7 @@ import { ModalCrearEditarTarea } from '../modal-crear-editar-tarea/modal-crear-e
 import { CardTareaMobile } from '../card-tarea-mobile/card-tarea-mobile';
 import { ModalDetalle } from '../modal-detalle/modal-detalle';
 import { TareaService } from '../../service/tarea-service';
+import { OpcionesService } from '../../../opciones/service/opciones-service';
 import { Tarea } from '../../../../interfaces/tarea.interface';
 
 @Component({
@@ -25,9 +26,10 @@ import { Tarea } from '../../../../interfaces/tarea.interface';
 export class MantenimientoAdmin implements OnInit {
 
   private tareaService = inject(TareaService);
+  private opcionesService = inject(OpcionesService);
   private cdr = inject(ChangeDetectorRef);
 
-  tareas: any[] = [];
+  tareas: Tarea[] = [];
 
   mostrarModal = false;
   mostrarDetalle = false;
@@ -43,27 +45,42 @@ export class MantenimientoAdmin implements OnInit {
 
   readonly tamanoPagina = 8;
   paginaActual = 1;
+  totalActivas = 0;
+  totalFinalizadas = 0;
+
+  localesUnicos: string[] = [];
+  sectoresUnicos: string[] = [];
 
   ngOnInit(): void {
-    this.tareaService.cargarTareas();
+    this.opcionesService.obtenerOpcionesTarea().subscribe({
+      next: (opciones) => {
+        this.localesUnicos = opciones.locales;
+        this.sectoresUnicos = opciones.sectores;
+      },
+      error: (err) => console.error('Error al cargar opciones:', err)
+    });
 
     this.tareaService.tareas$.subscribe({
       next: (tareas) => {
         this.tareas = tareas;
         this.cdr.detectChanges();
       },
-      error: (err) => {
-        console.error('Error al cargar tareas:', err);
+      error: (err) => console.error('Error al cargar tareas:', err)
+    });
+
+    this.tareaService.total$.subscribe(total => {
+      if (this.vistaActual === 'activas') {
+        this.totalActivas = total;
+      } else {
+        this.totalFinalizadas = total;
       }
     });
-  }
 
-  get localesUnicos(): string[] {
-    return [...new Set(this.tareas.map(t => t.local))].sort();
-  }
+    this.cargarTareasFiltradas();
 
-  get sectoresUnicos(): string[] {
-    return [...new Set(this.tareas.map(t => t.sector))].sort();
+    this.tareaService.getConteo('finalizadas').subscribe(total => {
+      this.totalFinalizadas = total;
+    });
   }
 
   get hayFiltrosActivos(): boolean {
@@ -77,75 +94,32 @@ export class MantenimientoAdmin implements OnInit {
   }
 
   get totalPaginas(): number {
-    const total =
-      this.vistaActual === 'activas'
-        ? this.tareasActivas.length
-        : this.tareasFinalizadas.length;
-
+    const total = this.vistaActual === 'activas' ? this.totalActivas : this.totalFinalizadas;
     return Math.max(1, Math.ceil(total / this.tamanoPagina));
   }
 
   get paginas(): number[] {
     const ventana = 5;
-
-    let inicio = Math.max(
-      1,
-      this.paginaActual - Math.floor(ventana / 2)
-    );
-
+    let inicio = Math.max(1, this.paginaActual - Math.floor(ventana / 2));
     let fin = inicio + ventana - 1;
-
     if (fin > this.totalPaginas) {
       fin = this.totalPaginas;
       inicio = Math.max(1, fin - ventana + 1);
     }
-
-    return Array.from(
-      { length: fin - inicio + 1 },
-      (_, i) => inicio + i
-    );
+    return Array.from({ length: fin - inicio + 1 }, (_, i) => inicio + i);
   }
 
-  get tareasActivasPaginadas() {
-    const inicio = (this.paginaActual - 1) * this.tamanoPagina;
-    return this.tareasActivas.slice(inicio, inicio + this.tamanoPagina);
+  get tareasActivasPaginadas(): Tarea[] {
+    return this.tareas;
   }
 
-  get tareasFinalizadasPaginadas() {
-    const inicio = (this.paginaActual - 1) * this.tamanoPagina;
-    return this.tareasFinalizadas.slice(inicio, inicio + this.tamanoPagina);
+  get tareasFinalizadasPaginadas(): Tarea[] {
+    return this.tareas;
   }
 
-  private aplicarFiltros(lista: any[]): any[] {
-    return lista.filter(t => {
-      const matchLocal =
-        !this.filtroLocal || t.local === this.filtroLocal;
-
-      const matchSector =
-        !this.filtroSector || t.sector === this.filtroSector;
-
-      const matchReq =
-        !this.filtroRequerimiento ||
-        t.tipoRequerimiento
-          ?.toLowerCase()
-          .includes(this.filtroRequerimiento.toLowerCase());
-
-      const matchDesde =
-        !this.filtroFechaDesde ||
-        t.fechaDeCreacion >= this.filtroFechaDesde;
-
-      const matchHasta =
-        !this.filtroFechaHasta ||
-        t.fechaDeCreacion <= this.filtroFechaHasta;
-
-      return (
-        matchLocal &&
-        matchSector &&
-        matchReq &&
-        matchDesde &&
-        matchHasta
-      );
-    });
+  onFiltroChange() {
+    this.paginaActual = 1;
+    this.cargarTareasFiltradas();
   }
 
   limpiarFiltros() {
@@ -155,16 +129,39 @@ export class MantenimientoAdmin implements OnInit {
     this.filtroFechaDesde = '';
     this.filtroFechaHasta = '';
     this.paginaActual = 1;
+    this.cargarTareasFiltradas();
   }
 
   cambiarTab(vista: 'activas' | 'finalizadas') {
     this.vistaActual = vista;
     this.paginaActual = 1;
+    this.cargarTareasFiltradas();
     this.cdr.detectChanges();
   }
 
   irAPagina(n: number) {
+    if (n < 1 || n > this.totalPaginas) return;
     this.paginaActual = n;
+    this.cargarTareasFiltradas();
+  }
+
+  private cargarTareasFiltradas() {
+    this.tareaService.cargarTareas(
+      this.paginaActual - 1,
+      this.tamanoPagina,
+      this.vistaActual,
+      this.obtenerFiltros()
+    );
+  }
+
+  private obtenerFiltros(): Record<string, string> {
+    return {
+      local: this.filtroLocal,
+      sector: this.filtroSector,
+      tipoRequerimiento: this.filtroRequerimiento,
+      fechaDesde: this.filtroFechaDesde,
+      fechaHasta: this.filtroFechaHasta
+    };
   }
 
   private crearTareaVacia(): Tarea {
@@ -173,10 +170,7 @@ export class MantenimientoAdmin implements OnInit {
       fechaDeCreacion: '',
       fechaObjetivo: '',
       estado: '',
-      creadorDto: {
-        id: 0,
-        nombre: ''
-      },
+      creadorDto: { id: 0, nombre: '' },
       asignados: {},
       descripcion: '',
       tipoRequerimiento: '',
@@ -194,64 +188,48 @@ export class MantenimientoAdmin implements OnInit {
   }
 
   descargarExcel() {
-    let registros: any[];
+    this.tareaService.descargarTodas(this.vistaActual, this.obtenerFiltros()).subscribe(registros => {
+      if (!registros.length) return;
 
-    if (this.hayFiltrosActivos) {
-      registros = this.aplicarFiltros(this.tareas);
-    } else {
-      const haceUnaSemana = new Date();
-      haceUnaSemana.setDate(haceUnaSemana.getDate() - 7);
-      const fechaCorte = haceUnaSemana.toISOString().split('T')[0];
-      registros = this.tareas.filter(t => t.fechaDeCreacion >= fechaCorte);
-    }
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0);
 
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0);
+      const filas = registros.map(t => {
+        let diasRetraso = 0;
+        if (t.fechaObjetivo && t.estado !== 'FINALIZADO') {
+          const objetivo = new Date(t.fechaObjetivo);
+          objetivo.setHours(0, 0, 0, 0);
+          const diff = hoy.getTime() - objetivo.getTime();
+          diasRetraso = diff > 0 ? Math.floor(diff / (1000 * 60 * 60 * 24)) : 0;
+        }
+        return {
+          'Fecha creación': t.fechaDeCreacion ?? '',
+          'Requerimiento': t.tipoRequerimiento ?? '',
+          'Estado': t.estado ?? '',
+          'Prioridad': t.prioridad ?? '',
+          'Local': t.local ?? '',
+          'Sector': t.sector ?? '',
+          'Días de retraso': diasRetraso,
+          'Asignados': t.asignados ? Object.values(t.asignados).join(', ') : '',
+          'Creador': t.creadorDto?.nombre ?? '',
+          'Observaciones': t.observacion ?? '',
+          'Descripción': t.descripcion ?? '',
+        };
+      });
 
-    const filas = registros.map(t => {
-      let diasRetraso = 0;
-      if (t.fechaObjetivo && t.estado !== 'FINALIZADO') {
-        const objetivo = new Date(t.fechaObjetivo);
-        objetivo.setHours(0, 0, 0, 0);
-        const diff = hoy.getTime() - objetivo.getTime();
-        diasRetraso = diff > 0 ? Math.floor(diff / (1000 * 60 * 60 * 24)) : 0;
-      }
+      const hoja = XLSX.utils.json_to_sheet(filas);
+      const columnas = Object.keys(filas[0]);
+      hoja['!cols'] = columnas.map(col => {
+        const maxContenido = Math.max(col.length, ...filas.map(f => String((f as any)[col] ?? '').length));
+        return { wch: Math.min(maxContenido + 2, 40) };
+      });
+      hoja['!freeze'] = { xSplit: 0, ySplit: 1 };
 
-      return {
-        'Fecha creación': t.fechaDeCreacion ?? '',
-        'Requerimiento': t.tipoRequerimiento ?? '',
-        'Estado': t.estado ?? '',
-        'Prioridad': t.prioridad ?? '',
-        'Local': t.local ?? '',
-        'Sector': t.sector ?? '',
-        'Días de retraso': diasRetraso,
-        'Asignados': t.asignados ? Object.values(t.asignados).join(', ') : '',
-        'Creador': t.creadorDto?.nombre ?? '',
-        'Observaciones': t.observacion ?? '',
-        'Descripción': t.descripcion ?? '',
-      };
+      const libro = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(libro, hoja, 'Tareas');
+      const fecha = new Date().toISOString().split('T')[0];
+      XLSX.writeFile(libro, `tareas_${fecha}.xlsx`);
     });
-
-    const hoja = XLSX.utils.json_to_sheet(filas);
-
-    // Ancho de columnas basado en el contenido más largo de cada columna
-    const columnas = Object.keys(filas[0] ?? {});
-    hoja['!cols'] = columnas.map(col => {
-      const maxContenido = Math.max(
-        col.length,
-        ...filas.map(f => String((f as any)[col] ?? '').length)
-      );
-      return { wch: Math.min(maxContenido + 2, 40) };
-    });
-
-    // Congelar la primera fila (encabezados)
-    hoja['!freeze'] = { xSplit: 0, ySplit: 1 };
-
-    const libro = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(libro, hoja, 'Tareas');
-
-    const fecha = new Date().toISOString().split('T')[0];
-    XLSX.writeFile(libro, `tareas_${fecha}.xlsx`);
   }
 
   abrirDetalle(tarea: any) {
@@ -265,32 +243,7 @@ export class MantenimientoAdmin implements OnInit {
     this.mostrarModal = true;
   }
 
-  get tareasActivas() {
-    const orden: Record<string, number> = {
-      NO_REALIZADO: 0,
-      PENDIENTE: 1
-    };
-
-    return this.aplicarFiltros(
-      this.tareas.filter(
-        t => t.estado?.toString() !== 'FINALIZADO'
-      )
-    ).sort(
-      (a, b) =>
-        (orden[a.estado] ?? 2) -
-        (orden[b.estado] ?? 2)
-    );
-  }
-
-  get tareasFinalizadas() {
-    return this.aplicarFiltros(
-      this.tareas.filter(
-        t => t.estado?.toString() === 'FINALIZADO'
-      )
-    );
-  }
-
   recargarTareas(): void {
-    this.tareaService.cargarTareas();
+    this.cargarTareasFiltradas();
   }
 }
