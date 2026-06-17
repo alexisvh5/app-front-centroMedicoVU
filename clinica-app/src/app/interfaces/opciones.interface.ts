@@ -9,4 +9,6 @@ export interface OpcionesTarea {
   estados: string[];
 
   tiposRequerimiento: string[];
+
+  sectoresPorLocal: Record<string, string[]>;
 }

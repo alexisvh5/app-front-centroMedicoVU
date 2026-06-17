@@ -36,8 +36,23 @@ export class ModalCrearEditarTarea implements OnInit, OnChanges {
     sectores: [],
     prioridades: [],
     estados: [],
-    tiposRequerimiento: []
+    tiposRequerimiento: [],
+    sectoresPorLocal: {}
   };
+
+  get sectoresFiltrados(): string[] {
+    const mapa = this.opciones.sectoresPorLocal;
+    if (this.tarea?.local && mapa?.[this.tarea.local]?.length) {
+      return mapa[this.tarea.local];
+    }
+    return this.opciones.sectores;
+  }
+
+  onLocalChange(): void {
+    if (this.tarea.sector && !this.sectoresFiltrados.includes(this.tarea.sector)) {
+      this.tarea.sector = '';
+    }
+  }
 
   empleadosDisponibles: Usuarios[] = [];
 

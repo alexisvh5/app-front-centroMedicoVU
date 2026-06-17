@@ -51,14 +51,27 @@ export class MantenimientoAdmin implements OnInit {
   totalActivasBadge = 0;
   totalFinalizadasBadge = 0;
 
+  get totalTab(): number {
+    return this.vistaActual === 'activas' ? this.totalActivas : this.totalFinalizadas;
+  }
+
   localesUnicos: string[] = [];
   sectoresUnicos: string[] = [];
+  sectoresPorLocal: Record<string, string[]> = {};
+
+  get sectoresFiltradosParaFiltro(): string[] {
+    if (this.filtroLocal && this.sectoresPorLocal[this.filtroLocal]?.length) {
+      return this.sectoresPorLocal[this.filtroLocal];
+    }
+    return this.sectoresUnicos;
+  }
 
   ngOnInit(): void {
     this.opcionesService.obtenerOpcionesTarea().subscribe({
       next: (opciones) => {
         this.localesUnicos = opciones.locales;
         this.sectoresUnicos = opciones.sectores;
+        this.sectoresPorLocal = opciones.sectoresPorLocal ?? {};
       },
       error: (err) => console.error('Error al cargar opciones:', err)
     });
@@ -72,11 +85,8 @@ export class MantenimientoAdmin implements OnInit {
     });
 
     this.tareaService.total$.subscribe(total => {
-      if (this.vistaActual === 'activas') {
-        this.totalActivas = total;
-      } else {
-        this.totalFinalizadas = total;
-      }
+      if (this.vistaActual === 'activas') { this.totalActivas = total; }
+      else { this.totalFinalizadas = total; }
     });
 
     this.cargarTareasFiltradas();
@@ -105,8 +115,7 @@ export class MantenimientoAdmin implements OnInit {
   }
 
   get totalPaginas(): number {
-    const total = this.vistaActual === 'activas' ? this.totalActivas : this.totalFinalizadas;
-    return Math.max(1, Math.ceil(total / this.tamanoPagina));
+    return Math.max(1, Math.ceil(this.totalTab / this.tamanoPagina));
   }
 
   get paginas(): number[] {
@@ -131,6 +140,13 @@ export class MantenimientoAdmin implements OnInit {
   onFiltroChange() {
     this.paginaActual = 1;
     this.cargarTareasFiltradas();
+  }
+
+  onFiltroLocalChange() {
+    if (this.filtroSector && !this.sectoresFiltradosParaFiltro.includes(this.filtroSector)) {
+      this.filtroSector = '';
+    }
+    this.onFiltroChange();
   }
 
   limpiarFiltros() {

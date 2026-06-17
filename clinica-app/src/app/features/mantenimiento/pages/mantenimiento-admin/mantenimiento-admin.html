@@ -33,7 +33,7 @@
             </div>
             <div class="filtro-grupo">
                 <label>Local</label>
-                <select [(ngModel)]="filtroLocal" (ngModelChange)="onFiltroChange()" class="filtro-select">
+                <select [(ngModel)]="filtroLocal" (ngModelChange)="onFiltroLocalChange()" class="filtro-select">
                     <option value="">Todos</option>
                     <option *ngFor="let local of localesUnicos" [value]="local">{{ local }}</option>
                 </select>
@@ -42,7 +42,7 @@
                 <label>Sector</label>
                 <select [(ngModel)]="filtroSector" (ngModelChange)="onFiltroChange()" class="filtro-select">
                     <option value="">Todos</option>
-                    <option *ngFor="let sector of sectoresUnicos" [value]="sector">{{ sector }}</option>
+                    <option *ngFor="let sector of sectoresFiltradosParaFiltro" [value]="sector">{{ sector }}</option>
                 </select>
             </div>
             <div class="filtro-grupo">
@@ -119,7 +119,7 @@
                 </tr>
             </tbody>
         </table>
-        <p class="empty" *ngIf="totalActivas === 0">No hay tareas activas.</p>
+        <p class="empty" *ngIf="totalTab === 0">No hay tareas activas.</p>
     </div>
 
     <!-- ACTIVAS - Mobile cards -->
@@ -127,7 +127,7 @@
         <app-card-tarea-mobile *ngFor="let tarea of tareasActivasPaginadas" [tarea]="tarea"
             (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)" (eliminar)="eliminarTarea(tarea)">
         </app-card-tarea-mobile>
-        <p class="empty" *ngIf="totalActivas === 0">No hay tareas activas.</p>
+        <p class="empty" *ngIf="totalTab === 0">No hay tareas activas.</p>
     </div>
 
     <!-- FINALIZADAS - Desktop table -->
@@ -187,7 +187,7 @@
                 </tr>
             </tbody>
         </table>
-        <p class="empty" *ngIf="totalFinalizadas === 0">No hay tareas finalizadas.</p>
+        <p class="empty" *ngIf="totalTab === 0">No hay tareas finalizadas.</p>
     </div>
 
     <!-- FINALIZADAS - Mobile cards -->
@@ -195,7 +195,7 @@
         <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadasPaginadas" [tarea]="tarea"
             (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)" (eliminar)="eliminarTarea(tarea)">
         </app-card-tarea-mobile>
-        <p class="empty" *ngIf="totalFinalizadas === 0">No hay tareas finalizadas.</p>
+        <p class="empty" *ngIf="totalTab === 0">No hay tareas finalizadas.</p>
     </div>
 
     <!-- PAGINACIÓN -->

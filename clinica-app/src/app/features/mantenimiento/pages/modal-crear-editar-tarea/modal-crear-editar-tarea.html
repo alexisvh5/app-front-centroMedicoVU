@@ -20,6 +20,7 @@
 
             <select
                 [(ngModel)]="tarea.local"
+                (ngModelChange)="onLocalChange()"
                 [class.input-error]="errores['local']">
 
                 <option value="">Seleccione un local</option>
@@ -47,7 +48,7 @@
                 <option value="">Seleccione un sector</option>
 
                 <option
-                    *ngFor="let sector of opciones.sectores"
+                    *ngFor="let sector of sectoresFiltrados"
                     [value]="sector">
 
                     {{ sector }}

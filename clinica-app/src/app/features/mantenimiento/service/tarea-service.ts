@@ -29,8 +29,8 @@ export class TareaService {
 
     this.http.get<PageResponse<Tarea>>(this.baseApiUrl, { params }).subscribe({
       next: (resp) => {
-        this.tareasSubject.next(resp.content);
         this.totalSubject.next(resp.totalElements);
+        this.tareasSubject.next(resp.content);
       },
       error: err => console.error('Error al obtener tareas', err)
     });
