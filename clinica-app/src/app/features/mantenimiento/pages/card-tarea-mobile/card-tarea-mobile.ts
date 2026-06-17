@@ -15,5 +15,6 @@ export class CardTareaMobile {
   @Output() verDetalle = new EventEmitter();
 
   @Output() editar = new EventEmitter();
+  @Output() eliminar = new EventEmitter();
   isOpen = false;
 }

@@ -213,7 +213,8 @@
 }
 
 .btn-primary,
-.btn-secondary {
+.btn-secondary,
+.btn-eliminar {
   flex: 1;
   border: none;
   padding: .75rem;
@@ -240,6 +241,15 @@
 
 .btn-secondary:hover {
   background: #e2e8f0;
+}
+
+.btn-eliminar {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.btn-eliminar:hover {
+  background: #fecaca;
 }
 
 /* =========================

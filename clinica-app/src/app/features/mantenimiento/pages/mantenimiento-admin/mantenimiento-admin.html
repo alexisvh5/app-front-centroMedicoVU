@@ -113,6 +113,7 @@
                         <div class="acciones-btns">
                             <button class="btn-tabla ver" (click)="abrirDetalle(tarea)" title="Ver detalle">Ver</button>
                             <button class="btn-tabla editar" (click)="abrirEditar(tarea)" title="Editar">Editar</button>
+                            <button class="btn-tabla eliminar" (click)="eliminarTarea(tarea)" title="Eliminar">Eliminar</button>
                         </div>
                     </td>
                 </tr>
@@ -124,7 +125,7 @@
     <!-- ACTIVAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'activas'">
         <app-card-tarea-mobile *ngFor="let tarea of tareasActivasPaginadas" [tarea]="tarea"
-            (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)">
+            (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)" (eliminar)="eliminarTarea(tarea)">
         </app-card-tarea-mobile>
         <p class="empty" *ngIf="totalActivas === 0">No hay tareas activas.</p>
     </div>
@@ -180,6 +181,7 @@
                         <div class="acciones-btns">
                             <button class="btn-tabla ver" (click)="abrirDetalle(tarea)" title="Ver detalle">Ver</button>
                             <button class="btn-tabla editar" (click)="abrirEditar(tarea)" title="Editar">Editar</button>
+                            <button class="btn-tabla eliminar" (click)="eliminarTarea(tarea)" title="Eliminar">Eliminar</button>
                         </div>
                     </td>
                 </tr>
@@ -191,7 +193,7 @@
     <!-- FINALIZADAS - Mobile cards -->
     <div class="grid-tareas mobile-only" *ngIf="vistaActual === 'finalizadas'">
         <app-card-tarea-mobile *ngFor="let tarea of tareasFinalizadasPaginadas" [tarea]="tarea"
-            (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)">
+            (verDetalle)="abrirDetalle(tarea)" (editar)="abrirEditar(tarea)" (eliminar)="eliminarTarea(tarea)">
         </app-card-tarea-mobile>
         <p class="empty" *ngIf="totalFinalizadas === 0">No hay tareas finalizadas.</p>
     </div>

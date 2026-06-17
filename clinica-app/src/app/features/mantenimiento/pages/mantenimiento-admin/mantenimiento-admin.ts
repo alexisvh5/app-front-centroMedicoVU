@@ -84,8 +84,14 @@ export class MantenimientoAdmin implements OnInit {
   }
 
   private actualizarContadoresBadge(): void {
-    this.tareaService.getConteo('activas').subscribe(total => this.totalActivasBadge = total);
-    this.tareaService.getConteo('finalizadas').subscribe(total => this.totalFinalizadasBadge = total);
+    this.tareaService.getConteo('activas').subscribe(total => {
+      this.totalActivasBadge = total;
+      this.cdr.detectChanges();
+    });
+    this.tareaService.getConteo('finalizadas').subscribe(total => {
+      this.totalFinalizadasBadge = total;
+      this.cdr.detectChanges();
+    });
   }
 
   get hayFiltrosActivos(): boolean {
@@ -252,5 +258,15 @@ export class MantenimientoAdmin implements OnInit {
   recargarTareas(): void {
     this.cargarTareasFiltradas();
     this.actualizarContadoresBadge();
+  }
+
+  eliminarTarea(tarea: Tarea): void {
+    if (!confirm(`¿Eliminar la tarea "${tarea.tipoRequerimiento}"? Esta acción no se puede deshacer.`)) {
+      return;
+    }
+    this.tareaService.eliminarTarea(tarea.id).subscribe({
+      next: () => this.recargarTareas(),
+      error: (err) => console.error('Error al eliminar tarea:', err)
+    });
   }
 }

@@ -78,11 +78,12 @@
           </div>
         </div>
 
-        <div class="acciones" *ngIf="tarea.estado !== 'FINALIZADO'">
-          <button class="btn-primary">
+        <div class="acciones">
+          <button class="btn-primary" *ngIf="tarea.estado !== 'FINALIZADO'">
             Finalizar tarea
           </button>
           <button class="btn-secondary" (click)="editar.emit()">Editar</button>
+          <button class="btn-eliminar" (click)="eliminar.emit()">Eliminar</button>
         </div>
 
       </div>

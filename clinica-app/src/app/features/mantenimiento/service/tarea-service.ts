@@ -68,6 +68,6 @@ export class TareaService {
   }
 
   eliminarTarea(id: number) {
-    return this.http.delete(`${this.baseApiUrl}/${id}`);
+    return this.http.delete(`${this.baseApiUrl}/${id}`, { responseType: 'text' });
   }
 }

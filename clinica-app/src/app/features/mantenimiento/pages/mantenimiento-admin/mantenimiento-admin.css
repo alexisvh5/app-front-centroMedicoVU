@@ -385,6 +385,15 @@
   background: #e2e8f0;
 }
 
+.btn-tabla.eliminar {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.btn-tabla.eliminar:hover {
+  background: #fecaca;
+}
+
 .sin-asignados {
   color: #cbd5e1;
 }
