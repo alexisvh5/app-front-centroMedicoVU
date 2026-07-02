@@ -5,6 +5,7 @@ import { environment } from '../../../../../src/environments/environment';
 import { Tarea } from '../../../interfaces/tarea.interface';
 import { TareaRequestDTO } from '../../../interfaces/tareaRequestDTO';
 import { PageResponse } from '../../../interfaces/page-response.interface';
+import { FinalizarTareaRequest } from '../../../interfaces/FinalizarTareaRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,12 @@ export class TareaService {
 
   eliminarTarea(id: number) {
     return this.http.delete(`${this.baseApiUrl}/${id}`, { responseType: 'text' });
+  }
+
+  finalizarTarea(id: number, request: FinalizarTareaRequest) {
+    return this.http.post(
+      `${this.baseApiUrl}/${id}/finalizar`,
+      request
+    );
   }
 }

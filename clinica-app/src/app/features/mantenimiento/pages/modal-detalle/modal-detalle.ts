@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tarea } from '../../../../interfaces/tarea.interface';
+import { TareaService } from '../../service/tarea-service';
+import { FinalizarTareaRequest } from '../../../../interfaces/FinalizarTareaRequest';
 @Component({
   selector: 'app-modal-detalle',
 
@@ -17,6 +19,9 @@ export class ModalDetalle {
   @Input() tarea!: Tarea;
 
   @Output() cerrar = new EventEmitter<void>();
+  @Output() tareaFinalizada = new EventEmitter<void>();
+
+  tareaService = inject(TareaService);
 
   observacion = '';
 
@@ -43,5 +48,19 @@ export class ModalDetalle {
     return Math.floor(
       diferenciaMs / (1000 * 60 * 60 * 24)
     );
+  }
+  finalizar(): void {
+    const request: FinalizarTareaRequest = {
+      observacion: this.observacion
+    };
+    this.tareaService.finalizarTarea(this.tarea.id, request).subscribe({
+      next: () => {
+        this.tareaFinalizada.emit();
+        this.cerrar.emit();
+      },
+      error: (error) => {
+        console.error('Error al finalizar la tarea:', error);
+      }
+    });
   }
 }

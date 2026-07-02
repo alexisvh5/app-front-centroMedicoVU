@@ -113,7 +113,8 @@
                         <div class="acciones-btns">
                             <button class="btn-tabla ver" (click)="abrirDetalle(tarea)" title="Ver detalle">Ver</button>
                             <button class="btn-tabla editar" (click)="abrirEditar(tarea)" title="Editar">Editar</button>
-                            <button class="btn-tabla eliminar" (click)="eliminarTarea(tarea)" title="Eliminar">Eliminar</button>
+                            <button class="btn-tabla eliminar" (click)="eliminarTarea(tarea)"
+                                title="Eliminar">Eliminar</button>
                         </div>
                     </td>
                 </tr>
@@ -181,7 +182,8 @@
                         <div class="acciones-btns">
                             <button class="btn-tabla ver" (click)="abrirDetalle(tarea)" title="Ver detalle">Ver</button>
                             <button class="btn-tabla editar" (click)="abrirEditar(tarea)" title="Editar">Editar</button>
-                            <button class="btn-tabla eliminar" (click)="eliminarTarea(tarea)" title="Eliminar">Eliminar</button>
+                            <button class="btn-tabla eliminar" (click)="eliminarTarea(tarea)"
+                                title="Eliminar">Eliminar</button>
                         </div>
                     </td>
                 </tr>
@@ -219,5 +221,5 @@
     (guardado)="recargarTareas()" (cerrar)="mostrarModal = false">
 </app-modal-crear-editar-tarea>
 
-<app-modal-detalle [visible]="mostrarDetalle" [tarea]="tareaSeleccionada" (cerrar)="mostrarDetalle = false">
-</app-modal-detalle>
+<app-modal-detalle [visible]="mostrarDetalle" [tarea]="tareaSeleccionada" (cerrar)="mostrarDetalle = false"
+    (tareaFinalizada)="recargarTareas()"></app-modal-detalle>
