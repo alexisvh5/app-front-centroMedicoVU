@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,14 @@ import { environment } from '../../../../environments/environment';
 export class AuthService {
 
   private http = inject(HttpClient);
+  private router = inject(Router);
 
   private readonly apiUrl = `${environment.apiUrl}/login`;
 
   private nombreSubject = new BehaviorSubject<string>(localStorage.getItem('nombre') ?? '');
   nombre$ = this.nombreSubject.asObservable();
+
+  private timerControl: ReturnType<typeof setInterval> | null = null;
 
   login(dni: string, clave: string): Observable<any> {
 
@@ -32,8 +36,26 @@ export class AuthService {
           localStorage.setItem('nombre', response.nombre);
           this.nombreSubject.next(response.nombre);
         }
+        this.iniciarControlDeExpiracion();
       })
     );
+  }
+
+  iniciarControlDeExpiracion(): void {
+    this.detenerControlDeExpiracion();
+    this.timerControl = setInterval(() => {
+      if (this.isTokenExpirado()) {
+        this.logout();
+        this.router.navigate(['/login'], { queryParams: { expirado: true } });
+      }
+    }, 30000);
+  }
+
+  private detenerControlDeExpiracion(): void {
+    if (this.timerControl) {
+      clearInterval(this.timerControl);
+      this.timerControl = null;
+    }
   }
 
   getToken(): string | null {
@@ -64,6 +86,7 @@ export class AuthService {
 
   logout(): void {
 
+    this.detenerControlDeExpiracion();
     localStorage.removeItem('token');
     localStorage.removeItem('nombre');
     this.nombreSubject.next('');
