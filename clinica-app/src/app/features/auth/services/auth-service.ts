@@ -41,9 +41,20 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  isTokenExpirado(): boolean {
+    const token = this.getToken();
+    if (!token) return true;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.exp < Math.floor(Date.now() / 1000);
+    } catch {
+      return true;
+    }
+  }
+
   isLoggedIn(): boolean {
 
-    return !!this.getToken();
+    return !!this.getToken() && !this.isTokenExpirado();
   }
 
   getNombre(): string {
