@@ -5,7 +5,8 @@ import { environment } from '../../../../../src/environments/environment';
 import { Tarea } from '../../../interfaces/tarea.interface';
 import { TareaRequestDTO } from '../../../interfaces/tareaRequestDTO';
 import { PageResponse } from '../../../interfaces/page-response.interface';
-import { FinalizarTareaRequest } from '../../../interfaces/FinalizarTareaRequest';
+import { FinalizarTareaRequest } from '../../../interfaces/finalizarTareaRequest';
+import { CancelarTareaRequest } from '../../../interfaces/cancelarTareaRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,13 @@ export class TareaService {
   finalizarTarea(id: number, request: FinalizarTareaRequest) {
     return this.http.post(
       `${this.baseApiUrl}/${id}/finalizar`,
+      request
+    );
+  }
+
+  cancelarTarea(id: number, request: CancelarTareaRequest) {
+    return this.http.post(
+      `${this.baseApiUrl}/${id}/cancelar`,
       request
     );
   }

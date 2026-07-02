@@ -68,7 +68,8 @@
         </div>
         <div *ngIf="tarea.estado !== 'FINALIZADO'" class="acciones">
 
-            <button class="btn-cancelar">
+            <button class="btn-cancelar"
+            (click)="cancelar()">
                 Cancelar tarea
             </button>
 
