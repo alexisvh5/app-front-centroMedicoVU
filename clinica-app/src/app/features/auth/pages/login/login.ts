@@ -1,7 +1,7 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth-service';
@@ -29,6 +29,7 @@ export class Login {
 
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
   private cdr = inject(ChangeDetectorRef);
 
@@ -55,6 +56,11 @@ export class Login {
 
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/home']);
+      return;
+    }
+
+    if (this.route.snapshot.queryParams['expirado']) {
+      this.mensajeError = 'Tu sesión expiró. Volvé a iniciar sesión.';
     }
   }
 
